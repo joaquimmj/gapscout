@@ -1,0 +1,127 @@
+{
+  "niche": "Buchhaltung Freelancer",
+  "lang": "de",
+  "generatedAt": "2026-11-11T20:16:22.918Z",
+  "sources": [
+    "stackexchange",
+    "appstore"
+  ],
+  "itemCount": 25,
+  "themes": [],
+  "topPainItems": [
+    {
+      "id": "as:de:622526440:14614306147",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 1★] Buggy und zu wenig Funktionen",
+      "quote": "Die mobile App bietet so gut wie keine Funktionen. Sie scheint ausschließlich für den Upload von Belegen ausgelegt zu sein, was seit einiger Zeit auch nicht mehr funktioniert. Das ist sehr schade und deutlich verschenkt…",
+      "pain": 0.55,
+      "terms": [
+        "buggy",
+        "bug"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14465932704",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 1★] Abofalle",
+      "quote": "Nie benutzt und ich muss 1 Jahr bezahlen. Weil ich etwas zu spät gekündigt habe. Kundendienst stur und nicht zu überzeugen.",
+      "pain": 0.55,
+      "terms": [
+        "gekündigt"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14403063626",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 2★] Es wird immer schlechter",
+      "quote": "Die App wird nach jedem Update immer noch komplizierter, die Bugs größer, was soll das? Alles, was man irgendwo anklickt, verschiebt sich, oder man kommt nicht dorthin, wo man hin möchte…",
+      "pain": 0.55,
+      "terms": [
+        "kompliziert",
+        "bug"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14616469502",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 3★] Einige Bugs",
+      "quote": "Alles in allem funktioniert die App super. Lediglich bei der „Multitasking“ Funktion, zickt diese etwas rum. Fängt man eine Rechnung an zu schreiben und wechselt dann kurz in eine andere App um etwas nachzusehen, sind m…",
+      "pain": 0.55,
+      "terms": [
+        "nervig",
+        "bug"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14421873096",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 3★] War mal besser",
+      "quote": "Ich verwende Lexware für mein Handwerk, wir hatten damals schon die Offline Version auf PC und sind seid Jahren treu dabei geblieben. Auch den Wechsel zur online Version haben wir mit gemacht. Anfangs war alles okay, ab…",
+      "pain": 0.55,
+      "terms": [
+        "nervt",
+        "kaputt"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14751197038",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 1★] Kleine Katastrophe",
+      "quote": "Für die Anmeldung ist eine Identifizierung über eine Authentifizierungs-App erforderlich. Wenn ich dort den Code abrufe, schließt sich jedoch die Lexware-App, sodass der Code anschließend nicht mehr gültig ist. Die Nutz…",
+      "pain": 0.33,
+      "terms": [
+        "umständlich"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14725652825",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 1★] Die App hängt",
+      "quote": "Dadurch dass die App hängt, muss man mehrmals Namen und Beschreibung eingeben und das ist ziemlich nervig. Deshalb lieber eine andere App nehmen",
+      "pain": 0.33,
+      "terms": [
+        "nervig"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14389851721",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 1★] Letztes Update Katastrophal",
+      "quote": "App normal super, seit letztem Update voller Buggs !! unbrauchbar",
+      "pain": 0.33,
+      "terms": [
+        "bug"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14367032618",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 1★] Bugs ohne Ende",
+      "quote": "Am neuesten IPhone macht spinnt es nur rum, error Nachrichten, man wird aus dem Programm geworfen und Rechnungen werden an falsche Kunden versandt. Ich benutze Lexware seit Jahren, und so verbucht war es noch nie…",
+      "pain": 0.33,
+      "terms": [
+        "bug"
+      ]
+    },
+    {
+      "id": "as:de:622526440:14591741237",
+      "url": "https://apps.apple.com/de/app/lexware/id622526440?uo=4",
+      "title": "[Lexware · 2★] Ux schlecht",
+      "quote": "Sehr kompliziertes handling. Wenn man eine Rechnung senden will und gewisse Dinge kopieren muss schließt die App und man muss von vorne anfangen",
+      "pain": 0.33,
+      "terms": [
+        "kompliziert"
+      ]
+    }
+  ],
+  "notes": [
+    "stackexchange: Tip: set STACKEXCHANGE_KEY (free) for 10k requests/day instead of 300.",
+    "appstore: Lexware: 23 reviews ≤3★ of 50 recent (avg 4.7★, 14275 ratings)",
+    "appstore: Qonto: Business Banking online: 32 reviews ≤3★ of 50 recent (avg 4.7★, 10624 ratings)",
+    "appstore: Lexware Scan: 33 reviews ≤3★ of 50 recent (avg 4.7★, 14517 ratings)",
+    "appstore: Norman: Buchhaltung mit KI: 3 reviews ≤3★ of 7 recent (avg 3.9★, 8 ratings)",
+    "appstore: Freiberufliche Buchhaltung: 0 reviews ≤3★ of 2 recent (avg 5.0★, 4 ratings)",
+    "appstore: No App Store apps found for \"Buchhaltung Freelancer problem\" in DE.",
+    "appstore: No App Store apps found for \"Buchhaltung Freelancer alternative\" in DE."
+  ]
+}

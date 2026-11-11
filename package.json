@@ -1,0 +1,51 @@
+{
+  "name": "gapscout",
+  "version": "0.1.0",
+  "description": "Find problems worth building \u2014 proven by real complaints and real Google demand. Claude Code plugin, MCP server and CLI.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "gapscout": "dist/cli.mjs",
+    "gapscout-mcp": "dist/mcp.mjs"
+  },
+  "exports": {
+    ".": "./dist/core.mjs"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p .",
+    "build": "npm run typecheck && node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "mcp": "node dist/mcp.mjs",
+    "scan": "node dist/cli.mjs scan"
+  },
+  "keywords": [
+    "claude-code",
+    "claude-code-plugin",
+    "mcp",
+    "market-research",
+    "pain-points",
+    "seo",
+    "keyword-research",
+    "indie-hackers",
+    "gummysearch-alternative"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaquimmj/gapscout"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "@types/node": "^22.10.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0",
+    "zod": "^3.25.0"
+  }
+}

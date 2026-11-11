@@ -1,0 +1,96 @@
+# gapscout · tools for teachers
+
+_Generated 2026-11-11 · Sources: Bluesky, App Store (1–3★ reviews), forums (web), Hacker News, GitHub · Score = frequency × intensity × demand × SERP weakness (each 1–5), as 0–100 (50 = all factors at 3/5). ✓ = quote copied from the source's API or checked on the page._
+
+| # | Opportunities | score | F | I | D | S |
+|---|---|---|---|---|---|---|
+| 1 | Parent messaging: ClassDojo upsells families and notifications are unreliable | **52** | 3 | 3 | 5 | 2 |
+| 2 | Sick-day sub plans: teachers come in sick rather than prepare for a substitute | **48** | 3 | 3 | 4 | 2 |
+
+**Coverage notes**
+
+- Reddit was not searched (no DataForSEO key), so r/Teachers, where many US teacher complaints are posted, is missing from this sample.
+- Free mode: demand is measured with Google Autocomplete (no monthly volumes) and the SERP comes from Claude's web search, which may differ slightly from Google.
+- Scan depth: normal.
+- Only 2 of 6 opportunities survive. The run is Bluesky/App Store-heavy, with Reddit and Trustpilot/G2 unavailable or snippet-only. Adding Reddit (r/Teachers via DataForSEO) and real search volumes would most likely strengthen the sub-plans opportunity or bring back an IEP or grading wedge.
+
+## 1. Parent messaging: ClassDojo upsells families and notifications are unreliable — score 52/100
+
+> Teachers pick ClassDojo or TalkingPoints to reach families. Parents then get pushed to pay for ClassDojo Plus, and basics such as calendar sync are paywalled. One teacher says parents' complaints about the prompts stopped her from using it at all. Notifications are also unreliable on both apps (missed messages, false badges, no SMS fallback), so time-sensitive information gets lost.
+
+**Who:** US K-8 teachers who choose their own parent-communication app, and the families on it
+
+**Gap:** No teacher-chosen messaging app promises both no family upsells and guaranteed delivery (push plus SMS fallback, read receipts); ClassDojo monetizes parents, TalkingPoints' notifications are criticized, and Remind's free tier sits inside ParentSquare's district sales model.
+
+| Frequency | Intensity | Google demand | SERP weakness |
+|---|---|---|---|
+| **3/5** 8 distinct App Store reviewers (6 ClassDojo, 2 TalkingPoints), 2 products, 1 source — skeptic: +1 from 2 after reviving the clusterer-dropped ClassDojo paywall reviews (5 distinct authors, checked in the raw App Store data). Capped at 3 because the reviews come from one source and 6 of 8 were posted in one week (Nov 6–10, 2026), which may be a short Plus-campaign spike. | **3/5** missed time-sensitive messages; one teacher could not adopt the app because parents objected to the upsells; equity complaint — skeptic: unchanged. Most paywall reviewers are parents, not the teacher who chooses the tool, and the core of ClassDojo stays free. | **5/5** Autocomplete proxy: 25+ relevant suggestions incl. 'classdojo alternative(s) free', 'why is class dojo so expensive', 'class dojo not showing notifications', 'remind app alternative' — skeptic: unchanged. The pricing and alternatives queries match the paywall complaint directly. | **2/5** Top 5 are comparison aggregators (AlternativeTo, Teachfloor, SourceForge, G2, Capterra) — skeptic: 3 → 2. These are high-authority domains, and vendors (Schoolvoice, SchoolStatus) already run dedicated 'ClassDojo alternative' pages, so a newcomer would have to be listed by the aggregators rather than outrank them. |
+
+**Evidence**
+
+- “The app prompts users to pay for ClassDojo Plus so much that I couldn't even start using it because all the parents complained about it.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
+- “Don’t enjoy the fact that simple things like syncing event to calendar is a premium feature like many others. Great tool for teacher parent contact and easy to use yet so many things are locked behind paywall.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
+- “This app is decent for classroom updating, but you need to pay for every single feature and that is unnecessary.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
+- “Every time I log into this platform I’m being upsold on new functions or features I don’t care about.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
+- “Everyone can’t afford the exclusive experience and I feel like everyone should be able to enjoy the same experience.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
+- “I use this as a teacher. The notifications don’t work properly, and sometimes I miss messages and other times it says I have notifications when I don’t.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
+- “I miss important information from my children’s teachers. There should also be an option to receive text messages AND have the app.” — [appstore](https://apps.apple.com/us/app/families-talkingpoints/id1320244591?uo=4) ✓
+- “There should be a way to archive or delete announcements from your stream once you’ve read them. Also, as a parent I should be able to message multiple teachers at once.” — [appstore](https://apps.apple.com/us/app/families-talkingpoints/id1320244591?uo=4) ✓
+
+**Google keywords:** `classdojo alternative`, `classdojo alternatives free`, `why is class dojo so expensive`, `class dojo not showing notifications`, `remind app alternative`, `best parent teacher communication app free`, `how to text parents as a teacher`
+
+**Existing solutions:** ClassDojo (Plus parent subscription), Remind (now part of ParentSquare), ParentSquare, TalkingPoints, Bloomz, ClassTag, SchoolStatus, Seesaw, Schoolvoice, Klassly
+
+**Product idea:** A parent-messaging app for individual K-8 teachers that never sells anything to families: every announcement goes out by push with automatic SMS/email fallback and read receipts, so a time-sensitive notice is not lost. The wedge against ClassDojo and TalkingPoints is no parent tier plus guaranteed delivery, paid for by a small flat teacher or school fee that covers SMS costs. Publish 'classdojo alternatives free' and 'why is class dojo so expensive' comparison pages and get listed on AlternativeTo, G2 and Capterra, which own that SERP.
+
+**Skeptic's notes**
+
+- Strong network effects and district standardization (ParentSquare/Remind, ClassDojo) make teacher-by-teacher switching slow
+- The complaint is about paying, so monetization is unclear; free SMS is costly at scale (Remind had to restrict free texting after carrier fees)
+- Evidence comes from App Store reviews only, mostly from one week; it may be a short reaction to a ClassDojo Plus push
+- ClassDojo can ease the upsell prompts at any time and remove the wedge
+
+## 2. Sick-day sub plans: teachers come in sick rather than prepare for a substitute — score 48/100
+
+> Before they can be absent, teachers must write sub plans and pass on everything a substitute needs to run their class: roster, seating, routines, which students need what, and where materials are. They often do it the night before, sometimes while feverish. Many decide it is easier to come in sick.
+
+**Who:** US K-12 classroom teachers taking unplanned sick days or short planned leave
+
+**Gap:** AI generators write a generic lesson, but none keeps the class context a substitute actually needs (roster, seating, routines, student notes, helpers, materials) or assembles it with today's plan into a one-tap 'I'm sick' package. That is still a static binder or TpT PDF.
+
+| Frequency | Intensity | Google demand | SERP weakness |
+|---|---|---|---|
+| **3/5** 4 independent Bluesky teachers, an EdWeek report on the pattern and a teacher blog, so 3 sources, 6 quotes — skeptic: +1 from 2 after adding 2 verified web sources. Removed 'They offered me an extra day off to write comments', which is about report-card comments, not sub plans. | **3/5** real lost time and a harmful workaround (teaching while sick); 'special hell' — skeptic: kept at 3, not 4. EdWeek blames sub prep and catch-up work together, and the sub shortage is a cause no software fixes. | **4/5** Autocomplete proxy: about 45 relevant suggestions, but most are template/how-to intent ('sub plan template', 'what to include in sub plans'). Only 'ai sub plan generator', 'sub plan generator' and 'apps for substitute teachers' signal software — skeptic: 5 → 4 because buying intent is a minority. | **2/5** For 'sub plan template' the top 5 are low-authority pages (music vendor, PDF converter, odd .ac.uk subdomains), confidence low — skeptic: 3 → 2 because the software query 'ai sub plan generator' is crowded with dedicated pages (Knowt, OpenEduCat x6 locales, Chalkie, Taskade, Colleague AI, Ditch That Textbook guide). The template SERP is a content wedge, not a product SERP. |
+
+**Evidence**
+
+- “Making sub plans for a single day sucks. Making sub plans for a three week paternity leave is some kind of special hell.” — [bluesky](https://bsky.app/profile/radishgames.com/post/3mzwei6rw5k2j) ✓
+- “spent an extra feverish hour after school getting sub plans ready for today. It sucks.” — [bluesky](https://bsky.app/profile/drsleeps.bsky.social/post/3mznysjjskk2v) ✓
+- “I don't even have sub plans written yet so I can't call in lmao, not without having to do extra work first” — [bluesky](https://bsky.app/profile/housewifery.bsky.social/post/3myhubegmj22v) ✓
+- “it’s easier to come to work than get sub plans ready” — [bluesky](https://bsky.app/profile/m-korn.bsky.social/post/3mxr4sgaark24) ✓
+- “between prepping a substitute and catching up when they got back to school, it ended up being easier to stay in the classroom” — [web](https://www.edweek.org/teaching-learning/an-overwhelming-feeling-of-guilt-why-teachers-dont-take-sick-leave/2024/11) ✓
+- “it would have been MUCH less hassle to just go in” — [web](https://emmysondie.blogspot.com/2024/03/teachers-and-being-sick.html) ✓
+
+**Google keywords:** `sub plan template`, `emergency sub plans`, `emergency sub plans template`, `how to write sub plans`, `what to include in sub plans`, `ai sub plan generator`, `sub plan generator`, `apps for substitute teachers`
+
+**Existing solutions:** MagicSchool AI (sub plan tool), Chalkie (emergency sub plans), Knowt AI substitute plan generator, OpenEduCat substitute lesson plan generator, Taskade, Colleague AI, Teachers Pay Teachers emergency sub plan bundles, WeAreTeachers editable sub binder (Google Slides), TeachDesk (seating chart PDF for subs), Frontline Absence Management (lets teachers attach plans to an absence)
+
+**Product idea:** A 'sub binder' web app for K-12 teachers: enter roster, seating chart, routines, student notes and where materials live once, then on a sick morning tap 'I'm out', add today's plan, and send a one-page sub packet (link or PDF) to the office or the substitute. The wedge against MagicSchool, Chalkie and Knowt is that they generate a generic lesson, while this keeps the class context that rarely changes, using initials rather than full names by default to ease FERPA review. Rank on 'sub plan template' and 'emergency sub plans template' with a free printable generator, then charge a few dollars a month for the saved binder and one-tap packet.
+
+**Skeptic's notes**
+
+- MagicSchool, Chalkie or Frontline could add a stored 'sub binder' as a feature; the defensible part is small
+- Willingness to pay is unproven: no quote mentions paying, and free AI generators and templates exist
+- Storing roster and behavior/IEP notes raises FERPA and district-approval hurdles that slow teacher-led adoption
+- Complaint evidence is social/editorial only (no reviews of an existing sub-plan product); much of the search demand is template content, not software
+
+## Discarded by the skeptic
+
+- **Gradebook/LMS fails at critical moments with no fallback** — Outside the audience and driven by one-off events. Every Canvas quote comes from a college instructor (finals week, 8-week classes), and 3 of the 4 refer to the same May 2026 Canvas incident. The Google Classroom scheduling quote (verified exact) is a 2021 bug that was later fixed, and the Planbook data loss is a single-app bug. Demand for the backup itself is zero ('gradebook backup' and 'offline gradebook for teachers' return 0 suggestions), and offline gradebooks (iDoceo, Bunt, ThinkWave) plus CSV export already exist. Would change with K-12 teachers reporting repeated SIS/gradebook outages.
+- **Grading and report-card comments eat evenings and weekends** — Banal and saturated. Only 2 real user quotes (Bluesky); the HN item is a founder's launch pitch and the Digg item is a promotional headline (snippet_only; the page now returns 404). The SERP is 100% dedicated free AI generators, and MagicSchool, Brisk, CoGrader, EssayGrader, Varsity Tutors and ChatGPT cover it. Demand is high, but there is no wedge. Would change with evidence for a specific unserved format (for example district SIS comment-bank limits or ESL speaking assessment) or an EU-privacy angle with a non-US audience.
+- **Same attendance and grade data entered in several systems** — Mostly solved or self-inflicted for US K-12. Teachers take attendance directly in the SIS (PowerSchool, Infinite Campus, Synergy), and Google Classroom/Canvas grade sync to the SIS exists. The evidence is a historical 'pink sheets' anecdote, a non-US university discovery doc, and 2 reviews of one standalone app (A+ Teacher's Aide), whose users create the double entry by choosing it. The sync pain itself has zero search demand.
+- **Start-of-year class and roster setup is slow and manual** — Solved at district level by Clever, ClassLink and Google Classroom SIS roster import. The quotes are feature gaps in single products (code.org multi-class sync, Planbook setup, an A+ Teacher's Aide CSV template). The SERP is owned by Google support docs (weakness 1), and the problem seeds return 0 suggestions.
+- **Other clusterer drops (Planbook usability, A+ Teacher's Aide abandonment, IEP paperwork, autograder CI minutes, gradebook config mistakes)** — Not revived: single-product bugs or single mentions. IEP paperwork time could be worth a dedicated scout pass with special-education sources (forums, EdWeek) to see if it reaches multiple sources.
+
+---
+_Made with [gapscout](https://github.com/joaquimmj/gapscout) — find problems worth building._

@@ -1,0 +1,13 @@
+{
+  "name": "gapscout",
+  "version": "0.1.0",
+  "description": "Find problems worth building — proven by real complaints and real Google demand. Parallel sub-agents scan HN, Stack Exchange, GitHub, app reviews and Reddit (via web search, no Reddit API), cluster recurring pains, then validate them with Google Autocomplete and SERP weakness. FR/DE/ES/EN.",
+  "author": {
+    "name": "Joaquim Manji Jung",
+    "url": "https://github.com/joaquimmj"
+  },
+  "homepage": "https://github.com/joaquimmj/gapscout",
+  "repository": "https://github.com/joaquimmj/gapscout",
+  "license": "MIT",
+  "keywords": ["market-research", "pain-points", "seo", "keyword-research", "opportunities", "gummysearch-alternative"]
+}

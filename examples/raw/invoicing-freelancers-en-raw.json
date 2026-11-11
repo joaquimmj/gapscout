@@ -1,0 +1,607 @@
+{
+  "niche": "invoicing freelancers",
+  "lang": "en",
+  "generatedAt": "2026-11-11T20:15:59.777Z",
+  "sources": [
+    "hn",
+    "stackexchange",
+    "github",
+    "appstore"
+  ],
+  "itemCount": 135,
+  "themes": [
+    {
+      "phrase": "time tracking",
+      "mentions": 16,
+      "sources": [
+        "hn",
+        "github",
+        "appstore"
+      ],
+      "avgPain": 0.41,
+      "demand": {
+        "score": {
+          "value": 5,
+          "why": "64 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "time tracking app",
+          "time tracking",
+          "time tracking app free",
+          "time tracking software",
+          "time tracking app for personal use",
+          "time tracking app for employees",
+          "time tracking tools",
+          "time tracking software for small business"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#648",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/648",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers struggle to split and tag trip expenses between business and personal in real time",
+          "quote": "**JTBD:** When I travel for client projects or conferences, I want to tag and categorize each expense as business or personal at the moment I spend it, so I can accurately invoice clients and file tax deductions without…",
+          "pain": 0.99
+        },
+        {
+          "id": "gh:anthropics/claude-code#17951",
+          "url": "https://github.com/anthropics/claude-code/issues/17951",
+          "title": "[anthropics/claude-code] [FEATURE] Terminal Title Configuration (Script-Based, like statusLine)",
+          "quote": "### Preflight Checklist - [x] I have searched [existing requests](https://github.com/anthropics/claude-code/issues?q=is%3Aissue%20label%3Aenhancement) and this feature hasn't been requested yet - [x] This is a single fe…",
+          "pain": 0.91
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1387",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1387",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers let client retainer contracts auto-renew at stale rates unnoticed",
+          "quote": "**JTBD:** When I manage ongoing retainer relationships with multiple clients, I want to track each contract's end date, renewal window, and rate review notice period, so I can proactively renegotiate terms rather than p…",
+          "pain": 0.91
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1445",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1445",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancer bill timing gaps when client payments are delayed",
+          "quote": "**JTBD:** When I work as a freelancer with irregular invoice payment cycles — some clients paying in 15 days, others in 60 — I want to plan which bills to pay from which expected income and when to move money between ac…",
+          "pain": 0.7
+        }
+      ]
+    },
+    {
+      "phrase": "small businesses",
+      "mentions": 13,
+      "sources": [
+        "hn",
+        "github",
+        "appstore"
+      ],
+      "avgPain": 0.48,
+      "demand": {
+        "score": {
+          "value": 5,
+          "why": "65 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "small businesses near me",
+          "small businesses for sale",
+          "small businesses hiring near me",
+          "small businesses",
+          "small businesses for sale near me",
+          "small businesses hiring",
+          "small businesses near me with no website",
+          "small businesses to start"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#648",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/648",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers struggle to split and tag trip expenses between business and personal in real time",
+          "quote": "**JTBD:** When I travel for client projects or conferences, I want to tag and categorize each expense as business or personal at the moment I spend it, so I can accurately invoice clients and file tax deductions without…",
+          "pain": 0.99
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1921",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1921",
+          "title": "[muaddibco/RealWorldProblems] Problem: Israeli freelancers lose payment when invoices lack allocation numbers",
+          "quote": "**JTBD:** When I issue a higher-value B2B tax invoice in Israel, I want to know whether an Israel Tax Authority allocation number is required and attach it before sending the invoice, so I can avoid client rejection, VA…",
+          "pain": 0.86
+        },
+        {
+          "id": "as:us:1405254630:14760303623",
+          "url": "https://apps.apple.com/us/app/square-invoices-invoice-maker/id1405254630?uo=4",
+          "title": "[Square Invoices: Invoice Maker · 1★] Horrible processing company and fees are insane",
+          "quote": "quipment regardless of how much business you bring them, terrible customer service, and disappointing funding practices, Square has become an extremely frustrating company to do business with. After years of loyalty and…",
+          "pain": 0.8
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1445",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1445",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancer bill timing gaps when client payments are delayed",
+          "quote": "**JTBD:** When I work as a freelancer with irregular invoice payment cycles — some clients paying in 15 days, others in 60 — I want to plan which bills to pay from which expected income and when to move money between ac…",
+          "pain": 0.7
+        }
+      ]
+    },
+    {
+      "phrase": "per month",
+      "mentions": 8,
+      "sources": [
+        "hn",
+        "github",
+        "appstore"
+      ],
+      "avgPain": 0.52,
+      "demand": {
+        "score": {
+          "value": 5,
+          "why": "34 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "per month",
+          "per month abbreviation",
+          "per month in spanish",
+          "per month meaning",
+          "per month billed annually meaning",
+          "per month interest calculator",
+          "per month in latin",
+          "per month calculator"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#648",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/648",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers struggle to split and tag trip expenses between business and personal in real time",
+          "quote": "**JTBD:** When I travel for client projects or conferences, I want to tag and categorize each expense as business or personal at the moment I spend it, so I can accurately invoice clients and file tax deductions without…",
+          "pain": 0.99
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#880",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/880",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers can't find trustworthy peer reviews for business tools and service suppliers",
+          "quote": "**JTBD:** When I'm considering buying a new software tool, contractor service, or supplier for my business, I want a reliable source of verified reviews from other freelancers in similar situations, so I can avoid wasti…",
+          "pain": 0.86
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#848",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/848",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers traveling for work can't reliably find vetted coworking day-pass options",
+          "quote": "**JTBD:** When I travel to a new city for client work, I want a quick way to find vetted coworking spaces that offer reliable day passes or drop-in rates, so I can avoid working from noisy hotel lobbies or cafés and mai…",
+          "pain": 0.86
+        },
+        {
+          "id": "gh:Drashko73/LifeSyncTracker#1",
+          "url": "https://github.com/Drashko73/LifeSyncTracker/issues/1",
+          "title": "[Drashko73/LifeSyncTracker] Software Requirements Specification (SRS) - Initial Implementation",
+          "quote": "I want you to setup and implement the initial app logic by following given software requirements specification: **Software Requirement Specification (SRS): LifeSync Tracker** **1. Introduction** **1.1 Purpose The purpos…",
+          "pain": 0.55
+        }
+      ]
+    },
+    {
+      "phrase": "indie hackers",
+      "mentions": 7,
+      "sources": [
+        "hn",
+        "github"
+      ],
+      "avgPain": 0.7,
+      "demand": {
+        "score": {
+          "value": 4,
+          "why": "18 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "indie hackers",
+          "indie hackers discord",
+          "indie hackers community",
+          "indie hackers podcast",
+          "indie hackers meaning",
+          "indie hackers reddit",
+          "indie hackers forum",
+          "indie hackers job board"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#648",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/648",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers struggle to split and tag trip expenses between business and personal in real time",
+          "quote": "**JTBD:** When I travel for client projects or conferences, I want to tag and categorize each expense as business or personal at the moment I spend it, so I can accurately invoice clients and file tax deductions without…",
+          "pain": 0.99
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1387",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1387",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers let client retainer contracts auto-renew at stale rates unnoticed",
+          "quote": "**JTBD:** When I manage ongoing retainer relationships with multiple clients, I want to track each contract's end date, renewal window, and rate review notice period, so I can proactively renegotiate terms rather than p…",
+          "pain": 0.91
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#880",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/880",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers can't find trustworthy peer reviews for business tools and service suppliers",
+          "quote": "**JTBD:** When I'm considering buying a new software tool, contractor service, or supplier for my business, I want a reliable source of verified reviews from other freelancers in similar situations, so I can avoid wasti…",
+          "pain": 0.86
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#848",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/848",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers traveling for work can't reliably find vetted coworking day-pass options",
+          "quote": "**JTBD:** When I travel to a new city for client work, I want a quick way to find vetted coworking spaces that offer reliable day passes or drop-in rates, so I can avoid working from noisy hotel lobbies or cafés and mai…",
+          "pain": 0.86
+        }
+      ]
+    },
+    {
+      "phrase": "existing tools",
+      "mentions": 7,
+      "sources": [
+        "hn",
+        "github"
+      ],
+      "avgPain": 0.65,
+      "demand": {
+        "score": {
+          "value": 3,
+          "why": "8 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "existing tools",
+          "existing tools meaning",
+          "existing ai tools",
+          "existing evaluation tools",
+          "use the existing tools wherever possible",
+          "tools no longer used",
+          "integration tools list",
+          "tools that should be in every toolbox"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#648",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/648",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers struggle to split and tag trip expenses between business and personal in real time",
+          "quote": "**JTBD:** When I travel for client projects or conferences, I want to tag and categorize each expense as business or personal at the moment I spend it, so I can accurately invoice clients and file tax deductions without…",
+          "pain": 0.99
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1387",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1387",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers let client retainer contracts auto-renew at stale rates unnoticed",
+          "quote": "**JTBD:** When I manage ongoing retainer relationships with multiple clients, I want to track each contract's end date, renewal window, and rate review notice period, so I can proactively renegotiate terms rather than p…",
+          "pain": 0.91
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1921",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1921",
+          "title": "[muaddibco/RealWorldProblems] Problem: Israeli freelancers lose payment when invoices lack allocation numbers",
+          "quote": "**JTBD:** When I issue a higher-value B2B tax invoice in Israel, I want to know whether an Israel Tax Authority allocation number is required and attach it before sending the invoice, so I can avoid client rejection, VA…",
+          "pain": 0.86
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1445",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1445",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancer bill timing gaps when client payments are delayed",
+          "quote": "**JTBD:** When I work as a freelancer with irregular invoice payment cycles — some clients paying in 15 days, others in 60 — I want to plan which bills to pay from which expected income and when to move money between ac…",
+          "pain": 0.7
+        }
+      ]
+    },
+    {
+      "phrase": "right now",
+      "mentions": 6,
+      "sources": [
+        "github",
+        "appstore",
+        "hn"
+      ],
+      "avgPain": 0.42,
+      "demand": {
+        "score": {
+          "value": 5,
+          "why": "65 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "right now",
+          "rightnow media",
+          "right now in spanish",
+          "right now nyt",
+          "right now van halen",
+          "right now lyrics",
+          "right now akon lyrics",
+          "right now kapow"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#848",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/848",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers traveling for work can't reliably find vetted coworking day-pass options",
+          "quote": "**JTBD:** When I travel to a new city for client work, I want a quick way to find vetted coworking spaces that offer reliable day passes or drop-in rates, so I can avoid working from noisy hotel lobbies or cafés and mai…",
+          "pain": 0.86
+        },
+        {
+          "id": "gh:WINBIGFOX/TimeScribe#79",
+          "url": "https://github.com/WINBIGFOX/TimeScribe/issues/79",
+          "title": "[WINBIGFOX/TimeScribe] Export Filtered by Month and Client",
+          "quote": "**Is your feature request related to a problem? Please describe.** When exporting time entries, there is currently no way to filter the export by specific month and client. As someone who bills hourly per client, I need…",
+          "pain": 0.33
+        },
+        {
+          "id": "as:us:1104772757:14152510535",
+          "url": "https://apps.apple.com/us/app/honeybook-small-business-crm/id1104772757?uo=4",
+          "title": "[HoneyBook - Small Business CRM · 1★] In a toxic relationship with Honeybook",
+          "quote": "At first, HoneyBook was everything I needed. I could send invoices, collect signatures, schedule payments, capture leads, communicate with clients, receive payments, and keep my books organized all in one place. It felt…",
+          "pain": 0.33
+        },
+        {
+          "id": "hn:44431761",
+          "url": "https://news.ycombinator.com/item?id=44431761",
+          "title": "Show HN: InvoiceFast – Generate clean invoices in seconds for freelancers",
+          "quote": "Hi HN, I built InvoiceFast, a minimal tool that helps freelancers generate clean, compliant invoices in seconds without the friction of complex accounting software. As a freelancer myself, I found it frustrating to spen…",
+          "pain": 0.33
+        }
+      ]
+    },
+    {
+      "phrase": "business owners",
+      "mentions": 6,
+      "sources": [
+        "github",
+        "hn",
+        "appstore"
+      ],
+      "avgPain": 0.37,
+      "demand": {
+        "score": {
+          "value": 5,
+          "why": "42 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "business owners policy insurance",
+          "business owners policy",
+          "business owners",
+          "business ownership",
+          "business owners insurance",
+          "business ownership types",
+          "business ownership lookup",
+          "business owners near me"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#648",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/648",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers struggle to split and tag trip expenses between business and personal in real time",
+          "quote": "**JTBD:** When I travel for client projects or conferences, I want to tag and categorize each expense as business or personal at the moment I spend it, so I can accurately invoice clients and file tax deductions without…",
+          "pain": 0.99
+        },
+        {
+          "id": "gh:BerriAI/litellm#15358",
+          "url": "https://github.com/BerriAI/litellm/issues/15358",
+          "title": "[BerriAI/litellm] [Bug]: reasoning_content duplicated inside thinking_blocks in LiteLLM response",
+          "quote": "### What happened? **Steps to reproduce** - Call model `openai.gpt-oss-20b-1:0` chat completion - Compare raw vendor payload vs. LiteLLM output - Observe duplicate reasoning text in both reasoning_content and thinking_b…",
+          "pain": 0.55
+        },
+        {
+          "id": "hn:44431761",
+          "url": "https://news.ycombinator.com/item?id=44431761",
+          "title": "Show HN: InvoiceFast – Generate clean invoices in seconds for freelancers",
+          "quote": "Hi HN, I built InvoiceFast, a minimal tool that helps freelancers generate clean, compliant invoices in seconds without the friction of complex accounting software. As a freelancer myself, I found it frustrating to spen…",
+          "pain": 0.33
+        },
+        {
+          "id": "as:us:1405254630:14742784815",
+          "url": "https://apps.apple.com/us/app/square-invoices-invoice-maker/id1405254630?uo=4",
+          "title": "[Square Invoices: Invoice Maker · 1★] Avoid using square at all costs!",
+          "quote": "Small business owners pay attention to the fees! Square is becoming a terrible value for small business owners. What started as an affordable, convenient all-in-one business solution has slowly turned into an expensive…",
+          "pain": 0.33
+        }
+      ]
+    },
+    {
+      "phrase": "client relationships",
+      "mentions": 6,
+      "sources": [
+        "github",
+        "hn"
+      ],
+      "avgPain": 0.59,
+      "demand": {
+        "score": {
+          "value": 4,
+          "why": "11 related Google Autocomplete suggestion(s) — proxy for demand, no volumes (set DataForSEO keys for volumes)"
+        },
+        "suggestions": [
+          "client relationships",
+          "client relationships manager",
+          "client relationships jobs",
+          "building client relationships",
+          "patron client relationships",
+          "how to build client relationships",
+          "how to build customer relationships",
+          "how to manage customer relationships"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "gh:muaddibco/RealWorldProblems#1387",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/1387",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers let client retainer contracts auto-renew at stale rates unnoticed",
+          "quote": "**JTBD:** When I manage ongoing retainer relationships with multiple clients, I want to track each contract's end date, renewal window, and rate review notice period, so I can proactively renegotiate terms rather than p…",
+          "pain": 0.91
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#880",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/880",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers can't find trustworthy peer reviews for business tools and service suppliers",
+          "quote": "**JTBD:** When I'm considering buying a new software tool, contractor service, or supplier for my business, I want a reliable source of verified reviews from other freelancers in similar situations, so I can avoid wasti…",
+          "pain": 0.86
+        },
+        {
+          "id": "gh:muaddibco/RealWorldProblems#848",
+          "url": "https://github.com/muaddibco/RealWorldProblems/issues/848",
+          "title": "[muaddibco/RealWorldProblems] Problem: Freelancers traveling for work can't reliably find vetted coworking day-pass options",
+          "quote": "**JTBD:** When I travel to a new city for client work, I want a quick way to find vetted coworking spaces that offer reliable day passes or drop-in rates, so I can avoid working from noisy hotel lobbies or cafés and mai…",
+          "pain": 0.86
+        },
+        {
+          "id": "gh:tuttle-dev/tuttle#459",
+          "url": "https://github.com/tuttle-dev/tuttle/issues/459",
+          "title": "[tuttle-dev/tuttle] 🇩🇪 Test and Feedback wanted from a freelancer operating in Germany",
+          "quote": "## 🌍 Call for Feedback: Freelancers in Germany **Tuttle** is an open-source business tool for freelancers — helping with contracts, time tracking, invoicing, and financial overview. We're looking for **real freelancers…",
+          "pain": 0.55
+        }
+      ]
+    }
+  ],
+  "topPainItems": [
+    {
+      "id": "gh:muaddibco/RealWorldProblems#648",
+      "url": "https://github.com/muaddibco/RealWorldProblems/issues/648",
+      "title": "[muaddibco/RealWorldProblems] Problem: Freelancers struggle to split and tag trip expenses between business and personal in real time",
+      "quote": "**JTBD:** When I travel for client projects or conferences, I want to tag and categorize each expense as business or personal at the moment I spend it, so I can accurately invoice clients and file tax deductions without…",
+      "pain": 0.99,
+      "terms": [
+        "frustrat",
+        "tedious",
+        "struggl",
+        "confusing",
+        "overpriced",
+        "manually",
+        "workaround",
+        "would pay"
+      ]
+    },
+    {
+      "id": "gh:anthropics/claude-code#17951",
+      "url": "https://github.com/anthropics/claude-code/issues/17951",
+      "title": "[anthropics/claude-code] [FEATURE] Terminal Title Configuration (Script-Based, like statusLine)",
+      "quote": "### Preflight Checklist - [x] I have searched [existing requests](https://github.com/anthropics/claude-code/issues?q=is%3Aissue%20label%3Aenhancement) and this feature hasn't been requested yet - [x] This is a single fe…",
+      "pain": 0.91,
+      "terms": [
+        "broken",
+        "manually",
+        "workaround",
+        "there's no way",
+        "bug",
+        "nul"
+      ]
+    },
+    {
+      "id": "gh:muaddibco/RealWorldProblems#1387",
+      "url": "https://github.com/muaddibco/RealWorldProblems/issues/1387",
+      "title": "[muaddibco/RealWorldProblems] Problem: Freelancers let client retainer contracts auto-renew at stale rates unnoticed",
+      "quote": "**JTBD:** When I manage ongoing retainer relationships with multiple clients, I want to track each contract's end date, renewal window, and rate review notice period, so I can proactively renegotiate terms rather than p…",
+      "pain": 0.91,
+      "terms": [
+        "too expensive",
+        "manually",
+        "workaround",
+        "would pay",
+        "lent"
+      ]
+    },
+    {
+      "id": "gh:muaddibco/RealWorldProblems#880",
+      "url": "https://github.com/muaddibco/RealWorldProblems/issues/880",
+      "title": "[muaddibco/RealWorldProblems] Problem: Freelancers can't find trustworthy peer reviews for business tools and service suppliers",
+      "quote": "**JTBD:** When I'm considering buying a new software tool, contractor service, or supplier for my business, I want a reliable source of verified reviews from other freelancers in similar situations, so I can avoid wasti…",
+      "pain": 0.86,
+      "terms": [
+        "frustrat",
+        "broken",
+        "manually",
+        "workaround",
+        "lent"
+      ]
+    },
+    {
+      "id": "gh:muaddibco/RealWorldProblems#848",
+      "url": "https://github.com/muaddibco/RealWorldProblems/issues/848",
+      "title": "[muaddibco/RealWorldProblems] Problem: Freelancers traveling for work can't reliably find vetted coworking day-pass options",
+      "quote": "**JTBD:** When I travel to a new city for client work, I want a quick way to find vetted coworking spaces that offer reliable day passes or drop-in rates, so I can avoid working from noisy hotel lobbies or cafés and mai…",
+      "pain": 0.86,
+      "terms": [
+        "frustrat",
+        "struggl",
+        "overpriced",
+        "manually",
+        "workaround"
+      ]
+    },
+    {
+      "id": "gh:muaddibco/RealWorldProblems#1921",
+      "url": "https://github.com/muaddibco/RealWorldProblems/issues/1921",
+      "title": "[muaddibco/RealWorldProblems] Problem: Israeli freelancers lose payment when invoices lack allocation numbers",
+      "quote": "**JTBD:** When I issue a higher-value B2B tax invoice in Israel, I want to know whether an Israel Tax Authority allocation number is required and attach it before sending the invoice, so I can avoid client rejection, VA…",
+      "pain": 0.86,
+      "terms": [
+        "broken",
+        "manually",
+        "workaround",
+        "would pay"
+      ]
+    },
+    {
+      "id": "as:us:1405254630:14760303623",
+      "url": "https://apps.apple.com/us/app/square-invoices-invoice-maker/id1405254630?uo=4",
+      "title": "[Square Invoices: Invoice Maker · 1★] Horrible processing company and fees are insane",
+      "quote": "quipment regardless of how much business you bring them, terrible customer service, and disappointing funding practices, Square has become an extremely frustrating company to do business with. After years of loyalty and…",
+      "pain": 0.8,
+      "terms": [
+        "frustrat",
+        "terrible",
+        "horrible"
+      ]
+    },
+    {
+      "id": "as:us:1104772757:14687396442",
+      "url": "https://apps.apple.com/us/app/honeybook-small-business-crm/id1104772757?uo=4",
+      "title": "[HoneyBook - Small Business CRM · 1★] Horrible",
+      "quote": "This system is down way too much I’m constantly uninstalling this app and reinstalling it’s frustrating. I’ve been supporting for 4 +years. Time to go",
+      "pain": 0.7,
+      "terms": [
+        "frustrat",
+        "horrible"
+      ]
+    },
+    {
+      "id": "as:us:1104772757:13907449952",
+      "url": "https://apps.apple.com/us/app/honeybook-small-business-crm/id1104772757?uo=4",
+      "title": "[HoneyBook - Small Business CRM · 1★] Buggy and confusing",
+      "quote": "Really bad, bad UI. Bad UX and bugs",
+      "pain": 0.7,
+      "terms": [
+        "buggy",
+        "confusing",
+        "bug"
+      ]
+    },
+    {
+      "id": "as:us:1405254630:14606952427",
+      "url": "https://apps.apple.com/us/app/square-invoices-invoice-maker/id1405254630?uo=4",
+      "title": "[Square Invoices: Invoice Maker · 1★] Horrible company",
+      "quote": "I’ve had the worst experience with this company they close my account without any explanation. I verified my business my current project that the customer use to pay and now over $9000 that’s been paid successfully is b…",
+      "pain": 0.7,
+      "terms": [
+        "worst",
+        "horrible"
+      ]
+    }
+  ],
+  "notes": [
+    "stackexchange: Tip: set STACKEXCHANGE_KEY (free) for 10k requests/day instead of 300.",
+    "github: Tip: set GITHUB_TOKEN for higher search limits (10/min unauthenticated).",
+    "appstore: Easy Invoice Maker App: 4 reviews ≤3★ of 50 recent (avg 4.9★, 27611 ratings)",
+    "appstore: Invocket: Invoice & Estimate: 0 reviews ≤3★ of 0 recent (avg 4.7★, 84 ratings)",
+    "appstore: BizXpert - Easy invoicing: 1 reviews ≤3★ of 50 recent (avg 4.4★, 122 ratings)",
+    "appstore: Simple Invoice: Bill & Receipt: 1 reviews ≤3★ of 8 recent (avg 4.2★, 151 ratings)",
+    "appstore: HoneyBook - Small Business CRM: 27 reviews ≤3★ of 50 recent (avg 4.8★, 16365 ratings)",
+    "appstore: Square Invoices: Invoice Maker: 27 reviews ≤3★ of 50 recent (avg 4.8★, 93432 ratings)",
+    "appstore: Billdu: Invoice Estimate Maker: 2 reviews ≤3★ of 50 recent (avg 4.8★, 26292 ratings)",
+    "appstore: Tiny Invoice - Invoice Maker: 20 reviews ≤3★ of 50 recent (avg 4.8★, 10513 ratings)",
+    "appstore: Invoice2go: Easy Invoice Maker: 23 reviews ≤3★ of 50 recent (avg 4.8★, 56073 ratings)"
+  ]
+}

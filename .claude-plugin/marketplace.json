@@ -1,0 +1,19 @@
+{
+  "name": "gapscout",
+  "owner": {
+    "name": "Joaquim Manji Jung",
+    "url": "https://github.com/joaquimmj"
+  },
+  "metadata": {
+    "description": "gapscout — open source opportunity scout for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "gapscout",
+      "source": "./",
+      "description": "Find problems worth building — proven by real complaints and real Google demand.",
+      "version": "0.1.0",
+      "category": "productivity"
+    }
+  ]
+}
