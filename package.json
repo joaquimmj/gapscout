@@ -1,7 +1,7 @@
 {
   "name": "gapscout",
   "version": "0.1.0",
-  "description": "Find problems worth building \u2014 proven by real complaints and real Google demand. Claude Code plugin, MCP server and CLI.",
+  "description": "Find problems worth building — proven by real complaints and real Google demand. Claude Code plugin, MCP server and CLI.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -22,6 +22,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit -p .",
     "build": "npm run typecheck && node scripts/build.mjs",
+    "pretest": "node -e \"require('fs').existsSync('node_modules')||(console.error('Run npm install first: the MCP test needs the dev dependencies.'),process.exit(1))\"",
     "test": "node --test test/*.test.mjs",
     "mcp": "node dist/mcp.mjs",
     "scan": "node dist/cli.mjs scan"
@@ -47,5 +48,6 @@
     "esbuild": "^0.25.0",
     "typescript": "^5.7.0",
     "zod": "^3.25.0"
-  }
+  },
+  "mcpName": "io.github.joaquimmj/gapscout"
 }

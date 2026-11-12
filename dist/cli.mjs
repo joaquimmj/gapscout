@@ -2,7 +2,7 @@
 import { createRequire as __gsCreateRequire } from 'node:module'; const require = __gsCreateRequire(import.meta.url);
 
 // packages/cli/src/index.ts
-import { mkdirSync as mkdirSync2, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync as mkdirSync2, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { join as join2 } from "node:path";
 import { parseArgs } from "node:util";
 
@@ -566,6 +566,14 @@ var NAMED = {
 };
 var ACCENTS = { acute: "\u0301", grave: "\u0300", circ: "\u0302", uml: "\u0308", tilde: "\u0303", cedil: "\u0327", ring: "\u030A" };
 function decodeEntities(s) {
+  for (let pass = 0; pass < 3; pass++) {
+    const next = decodeOnce(s);
+    if (next === s) break;
+    s = next;
+  }
+  return s;
+}
+function decodeOnce(s) {
   return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) => {
     if (e[0] === "#") {
       const code = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : Number(e.slice(1));
@@ -1413,6 +1421,7 @@ var L = {
     discarded: "Discarded by the skeptic",
     method: "Score = frequency \xD7 intensity \xD7 demand \xD7 SERP weakness (each 1\u20135), as 0\u2013100 (50 = all factors at 3/5). \u2713 = quote copied from the source's API or checked on the page.",
     snippet: "search snippet",
+    weakSignal: "Weak signal: evidence from fewer than 3 independent sources.",
     gap: "Gap",
     competitors: "Existing solutions",
     notes: "Coverage notes",
@@ -1435,6 +1444,7 @@ var L = {
     discarded: "\xC9cart\xE9es par le sceptique",
     method: "Score = fr\xE9quence \xD7 intensit\xE9 \xD7 demande \xD7 faiblesse SERP (chacun de 1 \xE0 5), sur 0\u2013100 (50 = tous les facteurs \xE0 3/5). \u2713 = citation copi\xE9e de l'API de la source ou v\xE9rifi\xE9e sur la page.",
     snippet: "extrait de recherche",
+    weakSignal: "Signal faible : preuves issues de moins de 3 sources ind\xE9pendantes.",
     gap: "Angle",
     competitors: "Solutions existantes",
     notes: "Limites de ce scan",
@@ -1457,6 +1467,7 @@ var L = {
     discarded: "Vom Skeptiker verworfen",
     method: "Score = H\xE4ufigkeit \xD7 Intensit\xE4t \xD7 Nachfrage \xD7 SERP-Schw\xE4che (je 1\u20135), auf 0\u2013100 (50 = alle Faktoren bei 3/5). \u2713 = Zitat aus der API der Quelle \xFCbernommen oder auf der Seite gepr\xFCft.",
     snippet: "Suchausschnitt",
+    weakSignal: "Schwaches Signal: Belege aus weniger als 3 unabh\xE4ngigen Quellen.",
     gap: "L\xFCcke",
     competitors: "Bestehende L\xF6sungen",
     notes: "Grenzen dieses Scans",
@@ -1479,6 +1490,7 @@ var L = {
     discarded: "Descartadas por el esc\xE9ptico",
     method: "Puntuaci\xF3n = frecuencia \xD7 intensidad \xD7 demanda \xD7 debilidad SERP (cada una 1\u20135), en 0\u2013100 (50 = todos los factores en 3/5). \u2713 = cita copiada de la API de la fuente o verificada en la p\xE1gina.",
     snippet: "fragmento de b\xFAsqueda",
+    weakSignal: "Se\xF1al d\xE9bil: pruebas de menos de 3 fuentes independientes.",
     gap: "Hueco",
     competitors: "Soluciones existentes",
     notes: "L\xEDmites de este an\xE1lisis",
@@ -1496,6 +1508,7 @@ function renderOpportunity(o, i, t) {
   const lines = [];
   lines.push(`## ${i + 1}. ${o.title} \u2014 ${t.score} ${o.score ?? "?"}/100`, "");
   lines.push(`> ${o.problem.replace(/\n+/g, " ")}`, "");
+  if (new Set(o.evidence.map((e) => e.source)).size < 3) lines.push(`\u26A0\uFE0F _${t.weakSignal}_`, "");
   if (o.audience) lines.push(`**${t.audience}:** ${o.audience}`, "");
   if (o.gap) lines.push(`**${t.gap}:** ${o.gap}`, "");
   lines.push(`| ${t.frequency} | ${t.intensity} | ${t.demand} | ${t.serp} |`, "|---|---|---|---|");
@@ -1623,6 +1636,7 @@ Usage
   gapscout thread <id>                         (hn:123 \xB7 se:superuser:456 \xB7 gh:owner/repo#7)
   gapscout fetch <url>                         (raw page text, robots.txt respected)
   gapscout verify <url> "<quote>"              (is the quote really on the page?)
+  gapscout cache [clear]                       (where the local cache lives, its size; clear it)
   gapscout render <report.json> [--json]       (JSON report \u2192 Markdown, or scored JSON)
 
 search / demand --json / serp / thread print the same JSON as the MCP tools of the same name.
@@ -1819,6 +1833,17 @@ async function main() {
     case "thread": {
       if (!arg) die("Usage: gapscout thread <id>");
       return void process.stdout.write(JSON.stringify(await getThread(arg), null, 2) + "\n");
+    }
+    case "cache": {
+      const c = getCache();
+      if (!c.path) return void process.stdout.write("Cache is in memory only (GAPSCOUT_NO_CACHE=1 or node:sqlite unavailable).\n");
+      if (arg === "clear") {
+        for (const f of [c.path, `${c.path}-wal`, `${c.path}-shm`]) rmSync(f, { force: true });
+        return void process.stdout.write(`Cleared ${c.path}
+`);
+      }
+      return void process.stdout.write(`${c.path} (${(statSync(c.path).size / 1e6).toFixed(1)} MB). Clear it with: gapscout cache clear
+`);
     }
     case "render": {
       if (!arg) die("Usage: gapscout render <report.json>");

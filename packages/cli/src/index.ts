@@ -1,11 +1,12 @@
 // gapscout CLI — the agent-free door. `npx gapscout scan "freelance accounting" --lang en`
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
 import {
   complaintQueries,
   extractThemes,
   fetchPage,
+  getCache,
   getThread,
   verifyQuote,
   hasDataForSEO,
@@ -37,6 +38,7 @@ Usage
   gapscout thread <id>                         (hn:123 · se:superuser:456 · gh:owner/repo#7)
   gapscout fetch <url>                         (raw page text, robots.txt respected)
   gapscout verify <url> "<quote>"              (is the quote really on the page?)
+  gapscout cache [clear]                       (where the local cache lives, its size; clear it)
   gapscout render <report.json> [--json]       (JSON report → Markdown, or scored JSON)
 
 search / demand --json / serp / thread print the same JSON as the MCP tools of the same name.
@@ -252,6 +254,16 @@ async function main() {
     case "thread": {
       if (!arg) die("Usage: gapscout thread <id>");
       return void process.stdout.write(JSON.stringify(await getThread(arg), null, 2) + "\n");
+    }
+    case "cache": {
+      const c = getCache();
+      if (!c.path) return void process.stdout.write("Cache is in memory only (GAPSCOUT_NO_CACHE=1 or node:sqlite unavailable).\n");
+      if (arg === "clear") {
+        // -wal / -shm are SQLite side files; they may not exist.
+        for (const f of [c.path, `${c.path}-wal`, `${c.path}-shm`]) rmSync(f, { force: true });
+        return void process.stdout.write(`Cleared ${c.path}\n`);
+      }
+      return void process.stdout.write(`${c.path} (${(statSync(c.path).size / 1e6).toFixed(1)} MB). Clear it with: gapscout cache clear\n`);
     }
     case "render": {
       if (!arg) die("Usage: gapscout render <report.json>");

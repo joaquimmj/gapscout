@@ -1,6 +1,6 @@
 ---
-description: Find problems worth building in a niche — real complaints, validated by Google demand. Usage /gapscout "<niche>" [--lang fr|en|de|es|fr,en] [--depth quick|normal|deep] [--country fr]
-argument-hint: "\"<niche>\" [--lang fr] [--depth normal] [--country fr]"
+description: Find problems worth building in a niche — real complaints, validated by Google demand. Usage /gapscout "<niche>" [--lang fr|en|de|es|fr,en] [--depth quick|normal|deep] [--country fr] [--cheap]
+argument-hint: "\"<niche>\" [--lang fr] [--depth normal] [--country fr] [--cheap]"
 ---
 
 Run the gapscout pipeline for: $ARGUMENTS
@@ -12,6 +12,7 @@ Follow the `gapscout` skill's method. You are the orchestrator: you only dispatc
 - `--lang`: comma-separated among en, fr, de, es. Default: the language the niche is written in (en if unclear). The **first** language is the report language.
 - `--depth`: quick | normal (default) | deep.
 - `--country`: ISO-2, default fr for fr, de for de, es for es, us for en.
+- `--cheap`: launch `gapscout:skeptic` and `gapscout:reporter` with the Agent tool's `model: "sonnet"` override instead of Opus. Say in the report notes that the scan ran in cheap mode.
 If the niche is missing, ask for it and stop.
 
 ## 1. Plan

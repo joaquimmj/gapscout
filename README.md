@@ -13,7 +13,7 @@ The open source GummySearch alternative, native to Claude Code. Works without th
 
 ---
 
-**Reddit closes its public API to everyone in March 2027.** Social-listening tools are losing their main source; GummySearch already shut down in November 2025. gapscout never needed that API.
+**Reddit closes its public API to everyone in March 2027.** Social-listening tools are losing their main source; GummySearch stopped taking customers in November 2025 and shuts down for good on 1 December 2026. gapscout never needed that API.
 
 gapscout sends parallel sub-agents to find **recurring problems people complain about** — in forums and communities (incl. Bluesky and Discourse), on Hacker News, Stack Exchange, GitHub issues, App Store reviews, Trustpilot/G2/Capterra, and Reddit through Google results (optional DataForSEO key) — then does the step nobody else does: it checks **whether people actually search Google for a fix**, and **how beatable page 1 is**.
 
@@ -40,6 +40,7 @@ Then:
 /gapscout "comptabilité freelance" --lang fr
 /gapscout "tools for teachers" --lang en --depth deep
 /gapscout "Buchhaltung Freelancer" --lang de,en
+/gapscout "tools for teachers" --cheap
 ```
 
 Reports are saved to `gapscout-reports/<niche>-<lang>-<date>.md` and `.json`.
@@ -55,6 +56,15 @@ reporter ◄── skeptic ◄──  demand-validator × N  (Google Autocomplet
 ```
 
 Eight Claude Code sub-agents, each with its own context, so a deep scan doesn't flood your conversation. Scouts run in parallel on Haiku; clustering and demand validation on Sonnet; the skeptic and the reporter on Opus.
+
+### What a scan costs
+
+A scan launches 10 to 13 sub-agent runs and takes 10 to 15 minutes: 3 scouts on Haiku, 5 or 6 planning, clustering and validation runs on Sonnet, and the skeptic and the reporter on Opus. It uses your Claude plan or API credit like any Claude Code session; the data sources are free unless you add DataForSEO.
+
+- `--depth quick` runs fewer queries per source.
+- `--cheap` runs the skeptic and the reporter on Sonnet instead of Opus.
+
+We have not yet measured token totals on a plain Claude Code install; numbers will be added here when we have them.
 
 **Score = frequency × intensity × Google demand × SERP weakness**, each rated 1–5 with its reason shown, displayed 0–100 through the geometric mean (all factors at 3/5 = 50).
 

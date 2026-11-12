@@ -93,7 +93,17 @@ const NAMED: Record<string, string> = {
 };
 const ACCENTS: Record<string, string> = { acute: "́", grave: "̀", circ: "̂", uml: "̈", tilde: "̃", cedil: "̧", ring: "̊" };
 
+/** Decodes until stable (max 3 passes): forums often double-encode (`&amp;eacute;`). */
 export function decodeEntities(s: string): string {
+  for (let pass = 0; pass < 3; pass++) {
+    const next = decodeOnce(s);
+    if (next === s) break;
+    s = next;
+  }
+  return s;
+}
+
+function decodeOnce(s: string): string {
   return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e: string) => {
     if (e[0] === "#") {
       const code = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : Number(e.slice(1));

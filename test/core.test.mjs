@@ -105,6 +105,7 @@ test("robots.txt patterns: wildcards and end anchors", () => {
 test("decodeEntities: named accents, numeric, hex", () => {
   assert.equal(decodeEntities("d&eacute;clar&eacute; &agrave; l&rsquo;URSSAF &ccedil;a &#233;t&#xE9; &hellip; &amp; co"), "déclaré à l’URSSAF ça été … & co");
   assert.equal(decodeEntities("&Uuml;bersicht &szlig; &ntilde; &unknown;"), "Übersicht ß ñ &unknown;");
+  assert.equal(decodeEntities("d&amp;eacute;clar&amp;eacute; &amp;amp; co"), "déclaré & co", "double-encoded");
 });
 
 test("normalizeForMatch: accents, quotes, punctuation", () => {
@@ -127,6 +128,7 @@ test("renderReport: sorted, localized, quotes and links kept", () => {
   assert.match(md, /Preuves/);
   assert.match(md, /\[reddit\]\(https:\/\/b\)/);
   assert.match(md, /`relance facture` \(1,300\/mo\)/);
+  assert.equal(md.match(/Signal faible/g)?.length, 2, "both test opportunities have a single source");
   assert.ok(md.indexOf("Gros") < md.indexOf("Petit"));
 });
 

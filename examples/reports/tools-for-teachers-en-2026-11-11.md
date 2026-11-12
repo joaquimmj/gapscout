@@ -18,6 +18,8 @@ _Generated 2026-11-11 · Sources: Bluesky, App Store (1–3★ reviews), forums 
 
 > Teachers pick ClassDojo or TalkingPoints to reach families. Parents then get pushed to pay for ClassDojo Plus, and basics such as calendar sync are paywalled. One teacher says parents' complaints about the prompts stopped her from using it at all. Notifications are also unreliable on both apps (missed messages, false badges, no SMS fallback), so time-sensitive information gets lost.
 
+⚠️ _Weak signal: evidence from fewer than 3 independent sources._
+
 **Who:** US K-8 teachers who choose their own parent-communication app, and the families on it
 
 **Gap:** No teacher-chosen messaging app promises both no family upsells and guaranteed delivery (push plus SMS fallback, read receipts); ClassDojo monetizes parents, TalkingPoints' notifications are criticized, and Remind's free tier sits inside ParentSquare's district sales model.
@@ -53,6 +55,8 @@ _Generated 2026-11-11 · Sources: Bluesky, App Store (1–3★ reviews), forums 
 ## 2. Sick-day sub plans: teachers come in sick rather than prepare for a substitute — score 48/100
 
 > Before they can be absent, teachers must write sub plans and pass on everything a substitute needs to run their class: roster, seating, routines, which students need what, and where materials are. They often do it the night before, sometimes while feverish. Many decide it is easier to come in sick.
+
+⚠️ _Weak signal: evidence from fewer than 3 independent sources._
 
 **Who:** US K-12 classroom teachers taking unplanned sick days or short planned leave
 

@@ -49,6 +49,8 @@ _Généré le 2026-11-11 · Sources: App Store (avis 1–3★), forums & Service
 
 > Des gérants d'EURL découvrent des années de comptabilité non tenue, des cotisations URSSAF jamais payées, une TVA en retard et des saisies sur compte. Ils ont besoin à la fois d'un rattrapage et d'une décision rapide (échéancier, redressement ou liquidation), et passent des annonces en urgence sur des plateformes de freelances.
 
+⚠️ _Signal faible : preuves issues de moins de 3 sources indépendantes._
+
 **Qui:** Gérants d'EURL / SASU unipersonnelles en retard administratif grave, souvent sans expert-comptable
 
 **Angle:** Les cabinets vendent le rattrapage par exercice, les consultants vendent des jours de négociation. Personne ne propose au dirigeant solo un parcours d'urgence au forfait qui enchaîne diagnostic des dettes et saisies, plan d'échéancier URSSAF/DGFiP et aide à décider redressement ou liquidation, puis l'oriente vers le bon professionnel.
