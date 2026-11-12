@@ -15,6 +15,10 @@ Thanks for helping! The most useful contributions, in order:
 5. Point the right scout in `agents/` at it.
 6. `npm run build && npm test`, then run a real scan and paste the output in the PR.
 
+## Running it locally
+
+`claude --plugin-dir /path/to/gapscout` from **another** folder. If you open the repo itself in Claude Code, its `.mcp.json` is also read as project config, where `${CLAUDE_PLUGIN_ROOT}` is unset, so you get a harmless "Missing environment variables" warning and a duplicate pending `gapscout` server. Don't "fix" it with `${CLAUDE_PLUGIN_ROOT:-.}`: that breaks real plugin installs, because the server path would resolve against the user's folder.
+
 ## Ground rules
 
 - Every piece of evidence must be a verbatim quote with a URL. No feature may generate or "improve" quotes.
