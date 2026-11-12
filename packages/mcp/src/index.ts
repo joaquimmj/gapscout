@@ -11,6 +11,7 @@ import {
   LANGS,
   opportunityScore,
   renderReport,
+  renderReportHtml,
   searchComplaints,
   serpSnapshot,
   SOURCE_IDS,
@@ -276,7 +277,7 @@ server.registerTool(
   "render_report",
   {
     title: "Render report",
-    description: "Turn the final opportunities JSON into the standard gapscout Markdown report (sorted by score, localized headings). Returns { markdown, json }.",
+    description: "Turn the final opportunities JSON into the standard gapscout Markdown report (sorted by score, localized headings). Returns three text blocks: Markdown, scored JSON, and a self-contained HTML page for sharing.",
     inputSchema: {
       niche: z.string(),
       lang,
@@ -301,6 +302,7 @@ server.registerTool(
         content: [
           { type: "text" as const, text: renderReport(report) },
           { type: "text" as const, text: JSON.stringify(withScores(report), null, 2) },
+          { type: "text" as const, text: renderReportHtml(report) },
         ],
       };
     } catch (e) {

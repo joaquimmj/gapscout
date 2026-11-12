@@ -358,17 +358,17 @@ function serpWeakness(query, results) {
   const signals = [];
   let points = 0;
   top.forEach((r, i) => {
-    const h = host(r.url);
-    if (UGC.some((re) => re.test(h))) {
+    const h2 = host(r.url);
+    if (UGC.some((re) => re.test(h2))) {
       const w = i < 3 ? 2 : 1;
       points += w;
-      signals.push(`#${r.position} is user-generated content (${h})${i < 3 ? " in the top 3" : ""}`);
-    } else if (THIN.some((re) => re.test(h))) {
+      signals.push(`#${r.position} is user-generated content (${h2})${i < 3 ? " in the top 3" : ""}`);
+    } else if (THIN.some((re) => re.test(h2))) {
       points += 0.5;
-      signals.push(`#${r.position} is an app-store listing or template gallery (${h}), not a dedicated page`);
-    } else if (AUTHORITY.some((re) => re.test(h))) {
+      signals.push(`#${r.position} is an app-store listing or template gallery (${h2}), not a dedicated page`);
+    } else if (AUTHORITY.some((re) => re.test(h2))) {
       points -= 1;
-      signals.push(`#${r.position} is a high-authority site (${h})`);
+      signals.push(`#${r.position} is a high-authority site (${h2})`);
     } else if (LISTICLE.test(r.title)) {
       points += 0.5;
       signals.push(`#${r.position} is a comparison/listicle page, not a dedicated solution ("${r.title.slice(0, 50)}")`);
@@ -928,7 +928,7 @@ async function verifyQuote(url, quote) {
   try {
     page = await fetchPage(url);
   } catch (e) {
-    return { url, status: "unreachable", error: e.message };
+    return { url, status: "unreachable", error: e.message, reason: `The page could not be read (${e.message}), so the quote is unchecked.` };
   }
   const hay = normalizeForMatch(page.text);
   let fragments = quote.split(/\.\.\.|…|\[\.\.\.\]/).map(normalizeForMatch).filter((f) => f.split(" ").length >= 3);
@@ -944,7 +944,8 @@ async function verifyQuote(url, quote) {
     url,
     status: overlap >= 0.6 ? "close" : "not_found",
     overlap: Math.round(overlap * 100) / 100,
-    excerpt: overlap >= 0.3 ? excerptAround(page.text, quote) : void 0
+    excerpt: overlap >= 0.3 ? excerptAround(page.text, quote) : void 0,
+    reason: overlap >= 0.6 ? "Most of the wording is on the page; the quote was trimmed or lightly edited. Use the excerpt." : overlap >= 0.3 ? "Part of the wording is on the page: the quote was reworded. Check the excerpt by hand." : "The page was read, and this text is not on it."
   };
 }
 function excerptAround(text, quote) {
@@ -1103,20 +1104,20 @@ async function searchHN(query, opts) {
   if (opts.sinceDays) params.set("numericFilters", `created_at_i>${daysAgoUnix(opts.sinceDays)}`);
   const data = await fetchJson(`${BASE4}/search?${params}`);
   const HIRING = /who is hiring|who wants to be hired|seeking freelancer|freelancer\? seeking/i;
-  const hits = data.hits.filter((h) => !HIRING.test(h.story_title ?? h.title ?? ""));
-  const items = hits.map((h) => {
-    const isComment = h._tags?.includes("comment");
-    const text = htmlToText(h.comment_text ?? h.story_text ?? "");
+  const hits = data.hits.filter((h2) => !HIRING.test(h2.story_title ?? h2.title ?? ""));
+  const items = hits.map((h2) => {
+    const isComment = h2._tags?.includes("comment");
+    const text = htmlToText(h2.comment_text ?? h2.story_text ?? "");
     return {
-      id: `hn:${h.objectID}`,
+      id: `hn:${h2.objectID}`,
       source: "hn",
-      url: `https://news.ycombinator.com/item?id=${h.objectID}`,
-      title: (isComment ? h.story_title : h.title) ?? void 0,
-      text: text || (h.title ?? ""),
-      author: h.author,
-      createdAt: h.created_at,
-      engagement: h.points ?? void 0,
-      comments: h.num_comments ?? void 0
+      url: `https://news.ycombinator.com/item?id=${h2.objectID}`,
+      title: (isComment ? h2.story_title : h2.title) ?? void 0,
+      text: text || (h2.title ?? ""),
+      author: h2.author,
+      createdAt: h2.created_at,
+      engagement: h2.points ?? void 0,
+      comments: h2.num_comments ?? void 0
     };
   });
   return { source: "hn", query, items, notes: [`${data.nbHits} total hits on HN`] };
@@ -1616,8 +1617,92 @@ function extractThemes(items, lang, nicheTerms, max = 12) {
   }
   return kept;
 }
+
+// packages/core/src/html.ts
+var h = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+var href = (url) => /^https?:\/\//i.test(url) ? h(url) : "#";
+var CSS = `
+:root{--bg:#fff;--fg:#1a1d23;--muted:#5b6472;--line:#e3e6ea;--card:#f7f8fa;--accent:#b45309;--good:#15803d}
+@media (prefers-color-scheme:dark){:root{--bg:#111827;--fg:#e5e7eb;--muted:#9ca3af;--line:#283041;--card:#182132;--accent:#facc15;--good:#4ade80}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.7rem;margin:0 0 4px}h2{font-size:1.25rem;margin:0 0 8px}
+.meta,.why,footer{color:var(--muted);font-size:.875rem}a{color:inherit}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.score{font-weight:700;color:var(--accent)}
+.warn{border-left:3px solid var(--accent);padding:8px 12px;background:var(--card);margin:16px 0}
+section{border:1px solid var(--line);border-radius:12px;padding:20px;margin:24px 0}
+blockquote{margin:8px 0 16px;padding-left:12px;border-left:3px solid var(--line)}
+.factors{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:16px 0}
+.factor{background:var(--card);border-radius:8px;padding:10px}.factor b{display:block}
+ul{padding-left:20px}li{margin:6px 0}.ok{color:var(--good)}code{background:var(--card);padding:1px 5px;border-radius:4px;font-size:.875em}
+.label{font-weight:600}footer{margin-top:40px;text-align:center}
+`;
+function factor(label, s) {
+  return `<div class="factor"><b>${h(label)} \xB7 ${s.value}/5</b><span class="why">${h(s.why)}</span></div>`;
+}
+function opportunity(o, i, t) {
+  const p = [];
+  p.push(`<section><h2>${i + 1}. ${h(o.title)} <span class="score">${o.score ?? "?"}/100</span></h2>`);
+  p.push(`<blockquote>${h(o.problem)}</blockquote>`);
+  if (new Set(o.evidence.map((e) => e.source)).size < 3) p.push(`<p class="warn">\u26A0\uFE0F ${h(t.weakSignal)}</p>`);
+  if (o.audience) p.push(`<p><span class="label">${h(t.audience)}:</span> ${h(o.audience)}</p>`);
+  if (o.gap) p.push(`<p><span class="label">${h(t.gap)}:</span> ${h(o.gap)}</p>`);
+  p.push(
+    `<div class="factors">${factor(t.frequency, o.frequency)}${factor(t.intensity, o.intensity)}${factor(t.demand, o.demand)}${factor(t.serp, o.serpWeakness)}</div>`
+  );
+  p.push(`<p class="label">${h(t.evidence)}</p><ul>`);
+  for (const e of o.evidence) {
+    const checked = e.verified && e.verified !== "snippet";
+    const mark = checked ? ` <span class="ok" title="${h(t.method)}">\u2713</span>` : e.verified === "snippet" ? ` <span class="why">(${h(t.snippet)})</span>` : "";
+    p.push(`<li>\u201C${h(e.quote)}\u201D \u2014 <a href="${href(e.url)}" rel="noopener nofollow">${h(e.source)}</a>${mark}</li>`);
+  }
+  p.push("</ul>");
+  if (o.keywords.length)
+    p.push(
+      `<p><span class="label">${h(t.keywords)}:</span> ${o.keywords.map((k) => `<code>${h(k.keyword)}</code>${k.volume != null ? ` (${k.volume.toLocaleString("en-US")}/mo)` : ""}`).join(", ")}</p>`
+    );
+  if (o.competitors?.length) p.push(`<p><span class="label">${h(t.competitors)}:</span> ${h(o.competitors.join(", "))}</p>`);
+  p.push(`<p><span class="label">${h(t.idea)}:</span> ${h(o.productIdea)}</p>`);
+  if (o.risks?.length) p.push(`<p class="label">${h(t.risks)}</p><ul>${o.risks.map((r) => `<li>${h(r)}</li>`).join("")}</ul>`);
+  p.push("</section>");
+  return p.join("\n");
+}
+function renderReportHtml(report) {
+  const r = withScores(report);
+  const t = L[r.lang] ?? L.en;
+  const rows = r.opportunities.map(
+    (o, i) => `<tr><td class="n">${i + 1}</td><td>${h(o.title)}</td><td class="n score">${o.score}</td><td class="n">${o.frequency.value}</td><td class="n">${o.intensity.value}</td><td class="n">${o.demand.value}</td><td class="n">${o.serpWeakness.value}</td></tr>`
+  ).join("\n");
+  return `<!doctype html>
+<html lang="${h(r.lang)}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gapscout \xB7 ${h(r.niche)}</title>
+<style>${CSS}</style>
+</head>
+<body><main>
+<h1>gapscout \xB7 ${h(r.niche)}</h1>
+<p class="meta">${h(t.generated)} ${h(r.generatedAt.slice(0, 10))} \xB7 ${h(t.sources)}: ${h(r.sourcesUsed.join(", "))}</p>
+<p class="meta">${h(t.method)}</p>
+<table><thead><tr><th class="n">#</th><th>${h(t.title)}</th><th class="n">${h(t.score)}</th><th class="n" title="${h(t.frequency)}">F</th><th class="n" title="${h(t.intensity)}">I</th><th class="n" title="${h(t.demand)}">D</th><th class="n" title="${h(t.serp)}">S</th></tr></thead>
+<tbody>
+${rows}
+</tbody></table>
+${(r.opportunities[0]?.score ?? 0) < 50 ? `<p class="warn">\u26A0\uFE0F ${h(t.weak)}</p>` : ""}
+${r.notes?.length ? `<p class="label">${h(t.notes)}</p><ul>${r.notes.map((n) => `<li>${h(n)}</li>`).join("")}</ul>` : ""}
+${r.opportunities.map((o, i) => opportunity(o, i, t)).join("\n")}
+${r.discarded?.length ? `<section><h2>${h(t.discarded)}</h2><ul>${r.discarded.map((d) => `<li><b>${h(d.title)}</b> \u2014 ${h(d.reason)}</li>`).join("")}</ul></section>` : ""}
+<footer>Made with <a href="https://github.com/joaquimmj/gapscout">gapscout</a> \u2014 find problems worth building.</footer>
+</main></body>
+</html>
+`;
+}
 export {
   DEFAULT_SE_SITES,
+  L,
   LANGS,
   LANG_PACKS,
   SOURCE_IDS,
@@ -1641,6 +1726,7 @@ export {
   redditSearchQueries,
   relevantToNiche,
   renderReport,
+  renderReportHtml,
   robotsAllows,
   robotsMatch,
   searchComplaints,

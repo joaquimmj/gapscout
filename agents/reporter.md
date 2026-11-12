@@ -16,12 +16,13 @@ You produce the deliverable. You receive the skeptic's `kept` and `discarded` li
    - `discarded`;
    - `notes`, for run-wide caveats (sources skipped such as Reddit without DataForSEO, free mode without volumes, thin coverage) — never inside one opportunity.
 
-   It returns the Markdown (first) and the scored JSON (second). The report flags on its own when the best score is below 50/100.
-3. Save both with Write:
+   It returns the Markdown (first), the scored JSON (second) and a self-contained HTML page (third). The report flags on its own when the best score is below 50/100.
+3. Save all three with Write:
    - `gapscout-reports/<slug>-<lang>-<YYYY-MM-DD>.md`
    - `gapscout-reports/<slug>-<lang>-<YYYY-MM-DD>.json`
+   - `gapscout-reports/<slug>-<lang>-<YYYY-MM-DD>.html` (the third block, saved exactly as returned)
    where slug is the niche lowercased, accents removed, spaces → hyphens. Don't overwrite an existing file: add `-2`, `-3`.
-4. Reply with: the two file paths, then the summary table (the first table of the Markdown) and one line on the top opportunity. Nothing else.
+4. Reply with: the three file paths, then the summary table (the first table of the Markdown) and one line on the top opportunity. Nothing else.
 
 Save the **scored JSON** returned by `render_report` (second content block) as the .json file.
 

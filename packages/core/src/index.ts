@@ -11,3 +11,4 @@ export { DEFAULT_SE_SITES } from "./sources/stackexchange.js";
 export { redditSearchQueries } from "./sources/reddit.js";
 export * from "./cluster.js";
 export * from "./page.js";
+export * from "./html.js";

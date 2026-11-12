@@ -14,6 +14,7 @@ import {
   keywordDemand,
   relevantToNiche,
   renderReport,
+  renderReportHtml,
   withScores,
   searchComplaints,
   serpSnapshot,
@@ -39,7 +40,7 @@ Usage
   gapscout fetch <url>                         (raw page text, robots.txt respected)
   gapscout verify <url> "<quote>"              (is the quote really on the page?)
   gapscout cache [clear]                       (where the local cache lives, its size; clear it)
-  gapscout render <report.json> [--json]       (JSON report → Markdown, or scored JSON)
+  gapscout render <report.json> [--json|--html] (JSON report → Markdown, scored JSON, or a shareable HTML page)
 
 search / demand --json / serp / thread print the same JSON as the MCP tools of the same name.
 
@@ -66,6 +67,7 @@ const { values, positionals } = parseArgs({
     subreddits: { type: "string" },
     "discourse-domains": { type: "string" },
     json: { type: "boolean", default: false },
+    html: { type: "boolean", default: false },
     help: { type: "boolean", short: "h", default: false },
   },
 });
@@ -269,6 +271,7 @@ async function main() {
       if (!arg) die("Usage: gapscout render <report.json>");
       const report = JSON.parse(readFileSync(arg, "utf8")) as Report;
       if (values.json) return void process.stdout.write(JSON.stringify(withScores(report), null, 2) + "\n");
+      if (values.html) return void process.stdout.write(renderReportHtml(report));
       return void process.stdout.write(renderReport(report));
     }
     default:

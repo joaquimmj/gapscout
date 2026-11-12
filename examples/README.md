@@ -2,6 +2,8 @@
 
 ## `reports/` — full `/gapscout` pipeline
 
+Each report comes as `.md`, `.json` and a self-contained `.html` page (no scripts, light and dark mode) made for sharing.
+
 - [`comptabilite-freelance-fr-2026-11-11.md`](reports/comptabilite-freelance-fr-2026-11-11.md) — `/gapscout "comptabilité freelance" --lang fr --depth quick`, free mode (no DataForSEO, so no Reddit and no volumes).
 
   44 complaints from the App Store, Services Publics+, Codeur job posts, forums, Hacker News and GitHub were grouped into 11 recurring problems, each demand-checked on Google. The skeptic kept **2**; every quote is checked against its source (✓).

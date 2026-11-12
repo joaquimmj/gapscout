@@ -43,7 +43,7 @@ Then:
 /gapscout "tools for teachers" --cheap
 ```
 
-Reports are saved to `gapscout-reports/<niche>-<lang>-<date>.md` and `.json`.
+Reports are saved to `gapscout-reports/<niche>-<lang>-<date>` as `.md`, `.json` and a self-contained `.html` page you can share.
 
 ## How it works
 

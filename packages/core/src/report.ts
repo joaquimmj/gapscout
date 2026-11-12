@@ -2,7 +2,7 @@
 import { opportunityScore } from "./scoring.js";
 import type { Lang, Opportunity, Report } from "./types.js";
 
-const L: Record<Lang, Record<string, string>> = {
+export const L: Record<Lang, Record<string, string>> = {
   en: {
     title: "Opportunities", generated: "Generated", sources: "Sources", score: "score", frequency: "Frequency",
     intensity: "Intensity", demand: "Google demand", serp: "SERP weakness", evidence: "Evidence", keywords: "Google keywords",

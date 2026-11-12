@@ -184,6 +184,8 @@ export type QuoteCheck = {
   /** The page passage that best matches, to copy instead of the paraphrase. */
   excerpt?: string;
   error?: string;
+  /** Plain-language reason when the status is not exact, to show to the reader. */
+  reason?: string;
 };
 
 /** Is this quote really on that page? "close" = same words with small edits (ellipsis, trimming). */
@@ -192,7 +194,7 @@ export async function verifyQuote(url: string, quote: string): Promise<QuoteChec
   try {
     page = await fetchPage(url);
   } catch (e) {
-    return { url, status: "unreachable", error: (e as Error).message };
+    return { url, status: "unreachable", error: (e as Error).message, reason: `The page could not be read (${(e as Error).message}), so the quote is unchecked.` };
   }
   const hay = normalizeForMatch(page.text);
   // A quote may elide parts with "..." / "…": check each fragment.
@@ -214,6 +216,12 @@ export async function verifyQuote(url: string, quote: string): Promise<QuoteChec
     status: overlap >= 0.6 ? "close" : "not_found",
     overlap: Math.round(overlap * 100) / 100,
     excerpt: overlap >= 0.3 ? excerptAround(page.text, quote) : undefined,
+    reason:
+      overlap >= 0.6
+        ? "Most of the wording is on the page; the quote was trimmed or lightly edited. Use the excerpt."
+        : overlap >= 0.3
+          ? "Part of the wording is on the page: the quote was reworded. Check the excerpt by hand."
+          : "The page was read, and this text is not on it.",
   };
 }
 
