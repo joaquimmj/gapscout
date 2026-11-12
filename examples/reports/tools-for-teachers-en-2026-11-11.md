@@ -28,14 +28,14 @@ _Generated 2026-11-11 · Sources: Bluesky, App Store (1–3★ reviews), forums 
 
 **Evidence**
 
-- “The app prompts users to pay for ClassDojo Plus so much that I couldn't even start using it because all the parents complained about it.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
-- “Don’t enjoy the fact that simple things like syncing event to calendar is a premium feature like many others. Great tool for teacher parent contact and easy to use yet so many things are locked behind paywall.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
-- “This app is decent for classroom updating, but you need to pay for every single feature and that is unnecessary.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
-- “Every time I log into this platform I’m being upsold on new functions or features I don’t care about.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
-- “Everyone can’t afford the exclusive experience and I feel like everyone should be able to enjoy the same experience.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
-- “I use this as a teacher. The notifications don’t work properly, and sometimes I miss messages and other times it says I have notifications when I don’t.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?uo=4) ✓
-- “I miss important information from my children’s teachers. There should also be an option to receive text messages AND have the app.” — [appstore](https://apps.apple.com/us/app/families-talkingpoints/id1320244591?uo=4) ✓
-- “There should be a way to archive or delete announcements from your stream once you’ve read them. Also, as a parent I should be able to message multiple teachers at once.” — [appstore](https://apps.apple.com/us/app/families-talkingpoints/id1320244591?uo=4) ✓
+- “The app prompts users to pay for ClassDojo Plus so much that I couldn't even start using it because all the parents complained about it.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?see-all=reviews) ✓
+- “Don’t enjoy the fact that simple things like syncing event to calendar is a premium feature like many others. Great tool for teacher parent contact and easy to use yet so many things are locked behind paywall.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?see-all=reviews) ✓
+- “This app is decent for classroom updating, but you need to pay for every single feature and that is unnecessary.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?see-all=reviews) ✓
+- “Every time I log into this platform I’m being upsold on new functions or features I don’t care about.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?see-all=reviews) ✓
+- “Everyone can’t afford the exclusive experience and I feel like everyone should be able to enjoy the same experience.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?see-all=reviews) ✓
+- “I use this as a teacher. The notifications don’t work properly, and sometimes I miss messages and other times it says I have notifications when I don’t.” — [appstore](https://apps.apple.com/us/app/classdojo/id552602056?see-all=reviews) ✓
+- “I miss important information from my children’s teachers. There should also be an option to receive text messages AND have the app.” — [appstore](https://apps.apple.com/us/app/families-talkingpoints/id1320244591?see-all=reviews) ✓
+- “There should be a way to archive or delete announcements from your stream once you’ve read them. Also, as a parent I should be able to message multiple teachers at once.” — [appstore](https://apps.apple.com/us/app/families-talkingpoints/id1320244591?see-all=reviews) ✓
 
 **Google keywords:** `classdojo alternative`, `classdojo alternatives free`, `why is class dojo so expensive`, `class dojo not showing notifications`, `remind app alternative`, `best parent teacher communication app free`, `how to text parents as a teacher`
 

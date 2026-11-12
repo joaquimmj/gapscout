@@ -35,11 +35,11 @@ _Erstellt am 2026-11-11 · Quellen: Bluesky, App Store (1–3★), Foren (gutefr
 
 - “Die Preisentwicklung bei #lexware hat bestimmt nur mit den steigenden Rohstoffpreisen zu tun. Letztes Jahr 145 dieses Jahr 299 momentan.” — [bluesky](https://bsky.app/profile/gofollow.freiburg.social.ap.brid.gy/post/3lyslkwch5zo2) ✓
 - “wir erhöhen mal eben schon wieder um 10%. Weil wir es können. Du bist ja gebunden, lieber Kunde.” — [bluesky](https://bsky.app/profile/aengelhorn.eurosky.social/post/3lrubzl54k223) ✓
-- “Nie benutzt und ich muss 1 Jahr bezahlen. Weil ich etwas zu spät gekündigt habe. Kundendienst stur und nicht zu überzeugen.” — [appstore](https://apps.apple.com/de/app/lexware/id622526440?uo=4) ✓
-- “Du schließt nur ein Monatsabo ab, aber man wird absichtlich in eine Abo Falle geführt. Man muss jedesmal kündigen 14 Tage vorher, damit sich nicht stillschweigend das Abonnement verlängert und dir Kosten entstehen.” — [appstore](https://apps.apple.com/de/app/sevdesk-buchhaltung-rechnung/id731738076?uo=4) ✓
-- “Wurde mit einem Preis gelockt und hab innerhalb von 12 Monaten 2 Preiserhöhungen erhalten. Zusätzlich wurden Sachen in Rechnung gestellt, die eigentlich Teil des Paket waren” — [appstore](https://apps.apple.com/de/app/kontist-by-shine/id1077414644?uo=4) ✓
+- “Nie benutzt und ich muss 1 Jahr bezahlen. Weil ich etwas zu spät gekündigt habe. Kundendienst stur und nicht zu überzeugen.” — [appstore](https://apps.apple.com/de/app/lexware/id622526440?see-all=reviews) ✓
+- “Du schließt nur ein Monatsabo ab, aber man wird absichtlich in eine Abo Falle geführt. Man muss jedesmal kündigen 14 Tage vorher, damit sich nicht stillschweigend das Abonnement verlängert und dir Kosten entstehen.” — [appstore](https://apps.apple.com/de/app/sevdesk-buchhaltung-rechnung/id731738076?see-all=reviews) ✓
+- “Wurde mit einem Preis gelockt und hab innerhalb von 12 Monaten 2 Preiserhöhungen erhalten. Zusätzlich wurden Sachen in Rechnung gestellt, die eigentlich Teil des Paket waren” — [appstore](https://apps.apple.com/de/app/kontist-by-shine/id1077414644?see-all=reviews) ✓
 - “existing tools either ignore the German tax system or charge too much for basic features.” — [hn](https://news.ycombinator.com/item?id=47311008) ✓
-- “Was mich etwas stört ist, dass nicht alle Konten zum verbuchen in der S-Version freigeschalten sind.” — [appstore](https://apps.apple.com/de/app/lexware/id622526440?uo=4) ✓
+- “Was mich etwas stört ist, dass nicht alle Konten zum verbuchen in der S-Version freigeschalten sind.” — [appstore](https://apps.apple.com/de/app/lexware/id622526440?see-all=reviews) ✓
 - “Das geht nicht, das müssen Sie mit der großen Version machen.” — [bluesky](https://bsky.app/profile/yoran.com/post/3mpnq5o53uc2j) ✓
 - “sevDesk-Umzug: Stornos als „Unklar“, Ausgaben 0 € im Jahresabgleich” — [github](https://github.com/firsttris/haben/issues/472) ✓
 - “Umzug aus Papierkram.de über die Schnittstelle” — [github](https://github.com/firsttris/haben/issues/416) ✓

@@ -29,7 +29,7 @@ _Généré le 2026-11-11 · Sources: App Store (avis 1–3★), forums & Service
 
 - “En 2023,il a déclaré un chiffre de 98972 euros avec une tolerance fixé a 101000 euros pour etre en franchise de TVA.” — [forum](https://www.previssima.fr/forum/statut-du-dirigeant/franchise-de-tva-auto-entrepreneur.html) ✓
 - “J'ai posé la question a une comptable qui dit la meme chose que vous.” — [forum](https://www.previssima.fr/forum/statut-du-dirigeant/franchise-de-tva-auto-entrepreneur.html) ✓
-- “Tous ça parce qu’on ne peux pas activer la TVA soit même” — [appstore](https://apps.apple.com/fr/app/indy-comptabilit%C3%A9-factures/id1627517694?uo=4) ✓
+- “Tous ça parce qu’on ne peux pas activer la TVA soit même” — [appstore](https://apps.apple.com/fr/app/indy-comptabilit%C3%A9-factures/id1627517694?see-all=reviews) ✓
 - “The wrong selection in one dropdown can silently opt you into a 23% VAT regime you never collected from clients.” — [hn](https://news.ycombinator.com/item?id=47426732) ✓
 
 **Mots-clés Google:** `franchise de tva seuil`, `franchise de tva auto entrepreneur`, `franchise de tva micro entreprise`, `comment sortir de la franchise de tva`, `seuil tva micro entrepreneur`, `seuil tva micro entrepreneur 2026`, `seuil tva micro entreprise prestation de service`, `seuil tva micro entreprise vente marchandise`, `quand facturer la tva micro entreprise`, `comment facturer la tva micro entreprise`
