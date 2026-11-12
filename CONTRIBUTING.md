@@ -24,3 +24,4 @@ Thanks for helping! The most useful contributions, in order:
 - Every piece of evidence must be a verbatim quote with a URL. No feature may generate or "improve" quotes.
 - Free by default; paid providers are optional and clearly labelled.
 - Keep `dist/` in sync: run `npm run build` before committing (the plugin runs `dist/mcp.mjs`).
+- Releasing: bump `version` in `package.json`, `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`. The MCP server and the User-Agent read it from `package.json` at build time.

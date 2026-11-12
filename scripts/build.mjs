@@ -1,7 +1,9 @@
 // Bundles the MCP server and the CLI into self-contained files under dist/.
 // The plugin's .mcp.json points at dist/mcp.mjs, so a plugin install needs no `npm install`.
 import { build } from "esbuild";
-import { chmodSync } from "node:fs";
+import { chmodSync, readFileSync } from "node:fs";
+
+const { version } = JSON.parse(readFileSync("package.json", "utf8"));
 
 const common = {
   bundle: true,
@@ -10,6 +12,7 @@ const common = {
   target: "node22",
   // node:sqlite is a Node built-in; keep every node: import external.
   external: ["node:*"],
+  define: { __GAPSCOUT_VERSION__: JSON.stringify(version) },
   banner: {
     js: "import { createRequire as __gsCreateRequire } from 'node:module'; const require = __gsCreateRequire(import.meta.url);",
   },

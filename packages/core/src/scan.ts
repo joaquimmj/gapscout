@@ -37,7 +37,7 @@ export async function searchComplaints(input: SearchComplaintsInput): Promise<Se
   const defaults: SourceId[] = ["hn", "stackexchange", "github", "appstore", "bluesky", "reddit"];
   if (input.discourseDomains?.length) defaults.push("discourse");
   const sources = input.sources?.length ? input.sources : defaults;
-  const opts = { lang: input.lang, sinceDays: input.sinceDays, limit: input.limit ?? 25 };
+  const opts = { lang: input.lang, sinceDays: input.sinceDays, limit: input.limit ?? 15 };
   const runners: Record<SourceId, () => Promise<SourceResult & { hostSearchQueries?: string[] }>> = {
     hn: () => searchHN(input.query, opts),
     stackexchange: () => searchStackExchange(input.query, { ...opts, sites: input.seSites }),
@@ -96,9 +96,6 @@ export async function getThread(id: string): Promise<Thread> {
   }
 }
 
-const JOB_NOISE =
-  /\b(offres?|emplois?|jobs?|salaires?|recrutement|recrute|stage|alternance|cdi|télétravail|teletravail|hiring|salary|salaries|careers?|vacanc(y|ies)|remote jobs?|stellen\w*|gehalt|jobbörse|empleos?|sueldos?|trabajo|vacantes?)\b/i;
-
 export async function keywordDemand(input: {
   seed: string;
   lang: Lang;
@@ -113,7 +110,9 @@ export async function keywordDemand(input: {
   let suggestions = await expandSeed(input.seed, input.lang, country, input.depth ?? "normal");
   // Job-seeker searches ("comptable freelance offre", "… salaire", "… maroc") are not demand for a product.
   const before = suggestions.length;
-  suggestions = suggestions.filter((s) => !JOB_NOISE.test(s.keyword));
+  // English job words show up in every language; the target language adds its own.
+  const jobNoise = [LANG_PACKS.en.jobNoise, LANG_PACKS[input.lang].jobNoise];
+  suggestions = suggestions.filter((s) => !jobNoise.some((re) => re.test(s.keyword)));
   if (suggestions.length < before) notes.push(`${before - suggestions.length} job-search suggestion(s) ignored (offre, emploi, salaire, hiring…)`);
   if (input.mustInclude?.length) {
     const needles = input.mustInclude.map((w) => w.toLowerCase());

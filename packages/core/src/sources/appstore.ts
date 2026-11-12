@@ -60,7 +60,7 @@ export async function searchAppStore(
         items.push({
           id: `as:${country}:${app.trackId}:${e.id?.label ?? kept}`,
           source: "appstore",
-          url: app.trackViewUrl,
+          url: `${app.trackViewUrl.split("?")[0]}?see-all=reviews`,
           title: `[${app.trackName} · ${rating}★] ${e.title?.label ?? ""}`.trim(),
           text: e.content?.label ?? "",
           author: e.author?.name?.label,

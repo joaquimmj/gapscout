@@ -77,6 +77,7 @@ var EN = {
   questionPrefixes: ["how to", "why is", "how do i", "best way to", "can't"],
   problemSuffixes: ["problem", "not working", "alternative", "too expensive", "tool", "software", "app", "template", "vs"],
   stopwords: "a an the and or but if of to in on for with at by from is are was were be been being it its this that these those i you he she we they my your our their me him her us them not no do does did have has had can could would should will just so very really about as into than then there here what which who when where why how all any some more most other such only own same too also get got like one also even much many".split(" "),
+  jobNoise: /\b(jobs?|hiring|salary|salaries|careers?|vacanc(y|ies)|internships?)\b/i,
   country: "us"
 };
 var FR = {
@@ -147,6 +148,7 @@ var FR = {
   questionPrefixes: ["comment", "pourquoi", "comment faire", "quel logiciel", "quel outil"],
   problemSuffixes: ["probl\xE8me", "ne marche pas", "alternative", "trop cher", "outil", "logiciel", "application", "mod\xE8le", "gratuit"],
   stopwords: "le la les un une des du de d l et ou mais si \xE0 a au aux en dans sur pour par avec sans ce cet cette ces c \xE7a ca est sont \xE9t\xE9 \xEAtre je tu il elle on nous vous ils elles me te se mon ma mes ton ta tes son sa ses notre nos votre vos leur leurs ne pas plus qui que quoi dont o\xF9 ou y tr\xE8s tout tous toute toutes comme aussi fait faire avoir ai as avons avez ont j n s qu m\xEAme bien peu".split(" "),
+  jobNoise: /\b(offres?|emplois?|salaires?|recrutement|recrute|stage|alternance|cdi|télétravail|teletravail)\b/i,
   country: "fr"
 };
 var DE = {
@@ -195,6 +197,7 @@ var DE = {
   questionPrefixes: ["wie", "warum", "wie kann ich", "welche software", "welches tool"],
   problemSuffixes: ["problem", "funktioniert nicht", "alternative", "zu teuer", "tool", "software", "app", "vorlage", "kostenlos"],
   stopwords: "der die das ein eine einer eines einem einen und oder aber wenn von zu im in an auf f\xFCr mit bei aus ist sind war waren sein es dies diese dieser ich du er sie wir ihr mein dein unser euer nicht kein keine ja nein wie was wer wann wo warum auch noch nur schon sehr mehr man sich mich mir dich dir uns".split(" "),
+  jobNoise: /\b(stellen\w*|gehalt|jobbörse|ausbildung|praktikum)\b/i,
   country: "de"
 };
 var ES = {
@@ -243,6 +246,7 @@ var ES = {
   questionPrefixes: ["c\xF3mo", "por qu\xE9", "c\xF3mo hacer", "qu\xE9 programa", "qu\xE9 herramienta"],
   problemSuffixes: ["problema", "no funciona", "alternativa", "caro", "herramienta", "programa", "app", "plantilla", "gratis"],
   stopwords: "el la los las un una unos unas y o pero si de del a al en con sin por para es son fue ser estar est\xE1 este esta estos estas ese esa eso yo tu \xE9l ella nosotros vosotros ellos mi mis tu tus su sus nuestro no s\xED que qu\xE9 quien c\xF3mo como cuando donde muy m\xE1s tambi\xE9n ya solo me te se lo le les nos".split(" "),
+  jobNoise: /\b(empleos?|sueldos?|trabajo|vacantes?|prácticas)\b/i,
   country: "es"
 };
 var LANG_PACKS = { en: EN, fr: FR, de: DE, es: ES };
@@ -315,7 +319,6 @@ var UGC = [
   /(^|\.)trustpilot\.com$/,
   /(^|\.)avis-verifies\.com$/,
   /(^|\.)indiehackers\.com$/,
-  /(^|\.)gutefrage\.net$/,
   /(^|\.)finanzfrage\.net$/
 ];
 var THIN = [
@@ -365,12 +368,12 @@ function serpWeakness(query, results) {
       const w = i < 3 ? 2 : 1;
       points += w;
       signals.push(`#${r.position} is user-generated content (${h})${i < 3 ? " in the top 3" : ""}`);
-    } else if (AUTHORITY.some((re) => re.test(h))) {
-      points -= 1;
-      signals.push(`#${r.position} is a high-authority site (${h})`);
     } else if (THIN.some((re) => re.test(h))) {
       points += 0.5;
       signals.push(`#${r.position} is an app-store listing or template gallery (${h}), not a dedicated page`);
+    } else if (AUTHORITY.some((re) => re.test(h))) {
+      points -= 1;
+      signals.push(`#${r.position} is a high-authority site (${h})`);
     } else if (LISTICLE.test(r.title)) {
       points += 0.5;
       signals.push(`#${r.position} is a comparison/listicle page, not a dedicated solution ("${r.title.slice(0, 50)}")`);
@@ -455,9 +458,12 @@ function getCache() {
       if (msg.includes("SQLite")) return;
       return origEmit.call(process, w, ...rest2);
     });
-    const require2 = createRequire(import.meta.url);
-    const { DatabaseSync } = require2("node:sqlite");
-    process.emitWarning = origEmit;
+    let DatabaseSync;
+    try {
+      ({ DatabaseSync } = createRequire(import.meta.url)("node:sqlite"));
+    } finally {
+      process.emitWarning = origEmit;
+    }
     const path = join(dir, "cache.db");
     instance = new SqliteCache(new DatabaseSync(path), path);
   } catch {
@@ -467,7 +473,8 @@ function getCache() {
 }
 
 // packages/core/src/http.ts
-var USER_AGENT = "gapscout/0.1 (+https://github.com/joaquimmj/gapscout)";
+var VERSION = "0.1.0";
+var USER_AGENT = `gapscout/${VERSION} (+https://github.com/joaquimmj/gapscout)`;
 var HttpError = class extends Error {
   constructor(status, url, body) {
     super(`HTTP ${status} for ${redact(url)}: ${body.slice(0, 200)}`);
@@ -706,7 +713,7 @@ async function searchAppStore(query, opts) {
         items.push({
           id: `as:${country}:${app.trackId}:${e.id?.label ?? kept}`,
           source: "appstore",
-          url: app.trackViewUrl,
+          url: `${app.trackViewUrl.split("?")[0]}?see-all=reviews`,
           title: `[${app.trackName} \xB7 ${rating}\u2605] ${e.title?.label ?? ""}`.trim(),
           text: e.content?.label ?? "",
           author: e.author?.name?.label,
@@ -814,10 +821,37 @@ async function getText(url, timeoutMs = 15e3) {
       signal: AbortSignal.timeout(timeoutMs)
     });
     const next = res.status >= 300 && res.status < 400 ? res.headers.get("location") : null;
-    if (!next) return { status: res.status, body: await res.text(), type: res.headers.get("content-type") ?? "" };
+    if (!next) return { status: res.status, body: await readCapped(res), type: res.headers.get("content-type") ?? "" };
     url = new URL(next, url).toString();
   }
   throw new Error("Too many redirects.");
+}
+var MAX_BYTES = 5e6;
+async function readCapped(res) {
+  const type = res.headers.get("content-type") ?? "";
+  if (type && !/text|html|xml|json/i.test(type)) {
+    await res.body?.cancel();
+    throw new Error(`Not a text page (${type}).`);
+  }
+  if (Number(res.headers.get("content-length")) > MAX_BYTES) {
+    await res.body?.cancel();
+    throw new Error("Page larger than 5 MB.");
+  }
+  const reader = res.body?.getReader();
+  if (!reader) return "";
+  const chunks = [];
+  let size = 0;
+  for (; ; ) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.length;
+    if (size > MAX_BYTES) {
+      await reader.cancel();
+      throw new Error("Page larger than 5 MB.");
+    }
+    chunks.push(value);
+  }
+  return new TextDecoder().decode(Buffer.concat(chunks));
 }
 async function robotsAllows(url) {
   const u = new URL(url);
@@ -894,7 +928,8 @@ async function verifyQuote(url, quote) {
     return { url, status: "unreachable", error: e.message };
   }
   const hay = normalizeForMatch(page.text);
-  const fragments = quote.split(/\.\.\.|…|\[\.\.\.\]/).map(normalizeForMatch).filter((f) => f.split(" ").length >= 3);
+  let fragments = quote.split(/\.\.\.|…|\[\.\.\.\]/).map(normalizeForMatch).filter((f) => f.split(" ").length >= 3);
+  if (!fragments.length) fragments = [normalizeForMatch(quote)].filter(Boolean);
   if (fragments.length && fragments.every((f) => hay.includes(f))) {
     return { url, status: "exact", overlap: 1, excerpt: excerptAround(page.text, quote) };
   }
@@ -1252,7 +1287,7 @@ async function searchComplaints(input) {
   const defaults = ["hn", "stackexchange", "github", "appstore", "bluesky", "reddit"];
   if (input.discourseDomains?.length) defaults.push("discourse");
   const sources = input.sources?.length ? input.sources : defaults;
-  const opts = { lang: input.lang, sinceDays: input.sinceDays, limit: input.limit ?? 25 };
+  const opts = { lang: input.lang, sinceDays: input.sinceDays, limit: input.limit ?? 15 };
   const runners = {
     hn: () => searchHN(input.query, opts),
     stackexchange: () => searchStackExchange(input.query, { ...opts, sites: input.seSites }),
@@ -1308,13 +1343,13 @@ async function getThread(id) {
       throw new Error(`Unknown id prefix "${prefix}". Expected hn:, se:, gh:, bs:, dc:.`);
   }
 }
-var JOB_NOISE = /\b(offres?|emplois?|jobs?|salaires?|recrutement|recrute|stage|alternance|cdi|télétravail|teletravail|hiring|salary|salaries|careers?|vacanc(y|ies)|remote jobs?|stellen\w*|gehalt|jobbörse|empleos?|sueldos?|trabajo|vacantes?)\b/i;
 async function keywordDemand(input) {
   const country = (input.country ?? LANG_PACKS[input.lang].country).toLowerCase();
   const notes = [];
   let suggestions = await expandSeed(input.seed, input.lang, country, input.depth ?? "normal");
   const before = suggestions.length;
-  suggestions = suggestions.filter((s) => !JOB_NOISE.test(s.keyword));
+  const jobNoise = [LANG_PACKS.en.jobNoise, LANG_PACKS[input.lang].jobNoise];
+  suggestions = suggestions.filter((s) => !jobNoise.some((re) => re.test(s.keyword)));
   if (suggestions.length < before) notes.push(`${before - suggestions.length} job-search suggestion(s) ignored (offre, emploi, salaire, hiring\u2026)`);
   if (input.mustInclude?.length) {
     const needles = input.mustInclude.map((w) => w.toLowerCase());

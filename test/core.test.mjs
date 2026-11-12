@@ -1,29 +1,27 @@
 // Offline unit tests against the built library (run `npm run build` first).
 import { test } from "node:test";
 import assert from "node:assert/strict";
+
+// Tests must not read or write the user's real cache (the cache is created lazily, on first use).
+process.env.GAPSCOUT_NO_CACHE = "1";
 import {
   assertPublicUrl,
   decodeEntities,
   isPrivateIp,
   expandSeed,
+  fetchPage,
   demandScore,
   extractThemes,
-  frequencyScore,
   opportunityScore,
   painHint,
   normalizeForMatch,
   relevantToNiche,
   renderReport,
+  robotsAllows,
   robotsMatch,
+  verifyQuote,
   serpWeakness,
 } from "../dist/core.mjs";
-
-test("frequency: thresholds and multi-source bonus", () => {
-  assert.equal(frequencyScore(1, 1).value, 1);
-  assert.equal(frequencyScore(7, 1).value, 3);
-  assert.equal(frequencyScore(7, 3).value, 4);
-  assert.equal(frequencyScore(30, 4).value, 5);
-});
 
 test("painHint: multilingual, wtp weighs more", () => {
   const fr = painHint("Franchement la facturation c'est la galère, je paierais pour un outil", "fr");
@@ -149,4 +147,69 @@ test("SSRF guard: private, loopback and metadata addresses are refused", async (
   for (const url of ["http://localhost:8080/x", "http://127.0.0.1/", "http://[::1]/", "http://169.254.169.254/latest/meta-data/", "file:///etc/passwd", "http://printer.local/"])
     await assert.rejects(assertPublicUrl(url), url);
   await assert.doesNotReject(assertPublicUrl("https://1.1.1.1/"));
+});
+
+// Serve canned pages without the network: 1.1.1.1 passes the public-address guard with no DNS lookup.
+async function withPages(pages, fn) {
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    const hit = pages[String(url)];
+    if (!hit) return new Response("", { status: 404 });
+    return new Response(hit.body, { status: 200, headers: { "content-type": hit.type ?? "text/html", ...hit.headers } });
+  };
+  try {
+    return await fn();
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+}
+
+test("verifyQuote: exact, short, elided, close and invented quotes", async () => {
+  const url = "https://1.1.1.1/vq-thread";
+  const body = "<html><body><p>Ich habe gek&uuml;ndigt. Abo Falle!</p><p>Die App ist leider sehr langsam und stürzt dauernd ab.</p></body></html>";
+  await withPages({ [url]: { body } }, async () => {
+    assert.equal((await verifyQuote(url, "Die App ist leider sehr langsam")).status, "exact");
+    assert.equal((await verifyQuote(url, "Abo Falle!")).status, "exact", "two-word quote");
+    assert.equal((await verifyQuote(url, "Ich habe gekündigt")).status, "exact", "HTML entity in page");
+    assert.equal((await verifyQuote(url, "Die App ist … stürzt dauernd ab")).status, "exact", "elided quote");
+    assert.equal((await verifyQuote(url, "Die App ist leider sehr langsam und stürzt ständig ab, furchtbar")).status, "close");
+    assert.equal((await verifyQuote(url, "Der Support hat nie geantwortet und mein Geld ist weg")).status, "not_found");
+    assert.equal((await verifyQuote(url, "Geld weg")).status, "not_found", "short invented quote");
+  });
+});
+
+test("robotsAllows: only the groups for * or gapscout apply", async () => {
+  const robots = "User-agent: GPTBot\nDisallow: /\n\nUser-agent: *\nDisallow: /private/\nAllow: /private/open\n";
+  await withPages({ "https://8.8.8.8/robots.txt": { body: robots, type: "text/plain" } }, async () => {
+    assert.ok(await robotsAllows("https://8.8.8.8/forum/thread-1"), "GPTBot's Disallow: / must not apply to us");
+    assert.ok(!(await robotsAllows("https://8.8.8.8/private/x")));
+    assert.ok(await robotsAllows("https://8.8.8.8/private/open/page"), "longer Allow wins");
+  });
+});
+
+test("fetchPage: refuses binary and oversized bodies", async () => {
+  await withPages(
+    {
+      "https://1.1.1.1/big.html": { body: "x".repeat(5_000_001) },
+      "https://1.1.1.1/file.zip": { body: "PK", type: "application/zip" },
+    },
+    async () => {
+      await assert.rejects(fetchPage("https://1.1.1.1/big.html"), /larger than 5 MB/);
+      await assert.rejects(fetchPage("https://1.1.1.1/file.zip"), /Not a text page/);
+    },
+  );
+});
+
+test("serpWeakness: app-store listings are thin results, not authority", () => {
+  const r = serpWeakness("invoice app freelancers", [
+    { position: 1, url: "https://apps.apple.com/us/app/x/id1", title: "Invoice app for freelancers" },
+    { position: 2, url: "https://play.google.com/store/apps/details?id=x", title: "Invoice app for freelancers" },
+  ]);
+  assert.ok(r.signals.every((s) => s.includes("app-store listing")), r.signals.join(" | "));
+});
+
+test("renderReport: zero opportunities still renders, with the warning", () => {
+  const md = renderReport({ niche: "x", lang: "en", generatedAt: "2026-11-12T00:00:00Z", sourcesUsed: ["hn"], opportunities: [], discarded: [{ title: "A", reason: "solved" }] });
+  assert.match(md, /No strong opportunity/);
+  assert.match(md, /\*\*A\*\* — solved/);
 });

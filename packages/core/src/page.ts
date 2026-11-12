@@ -52,10 +52,40 @@ async function getText(url: string, timeoutMs = 15_000): Promise<{ status: numbe
       signal: AbortSignal.timeout(timeoutMs),
     });
     const next = res.status >= 300 && res.status < 400 ? res.headers.get("location") : null;
-    if (!next) return { status: res.status, body: await res.text(), type: res.headers.get("content-type") ?? "" };
+    if (!next) return { status: res.status, body: await readCapped(res), type: res.headers.get("content-type") ?? "" };
     url = new URL(next, url).toString();
   }
   throw new Error("Too many redirects.");
+}
+
+const MAX_BYTES = 5_000_000;
+
+/** Agent-supplied URLs may point at huge or binary files: read text only, at most 5 MB. */
+async function readCapped(res: Response): Promise<string> {
+  const type = res.headers.get("content-type") ?? "";
+  if (type && !/text|html|xml|json/i.test(type)) {
+    await res.body?.cancel();
+    throw new Error(`Not a text page (${type}).`);
+  }
+  if (Number(res.headers.get("content-length")) > MAX_BYTES) {
+    await res.body?.cancel();
+    throw new Error("Page larger than 5 MB.");
+  }
+  const reader = res.body?.getReader();
+  if (!reader) return "";
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.length;
+    if (size > MAX_BYTES) {
+      await reader.cancel();
+      throw new Error("Page larger than 5 MB.");
+    }
+    chunks.push(value);
+  }
+  return new TextDecoder().decode(Buffer.concat(chunks));
 }
 
 /** Minimal robots.txt check for our user agent (groups for "gapscout" or "*", Allow/Disallow prefixes). */
@@ -166,10 +196,12 @@ export async function verifyQuote(url: string, quote: string): Promise<QuoteChec
   }
   const hay = normalizeForMatch(page.text);
   // A quote may elide parts with "..." / "…": check each fragment.
-  const fragments = quote
+  let fragments = quote
     .split(/\.\.\.|…|\[\.\.\.\]/)
     .map(normalizeForMatch)
     .filter((f) => f.split(" ").length >= 3);
+  // Short quotes ("Abo Falle!") have no 3-word fragment: match the whole quote instead.
+  if (!fragments.length) fragments = [normalizeForMatch(quote)].filter(Boolean);
   if (fragments.length && fragments.every((f) => hay.includes(f))) {
     return { url, status: "exact", overlap: 1, excerpt: excerptAround(page.text, quote) };
   }

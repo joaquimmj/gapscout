@@ -78,9 +78,12 @@ export function getCache(): Cache {
       if (msg.includes("SQLite")) return;
       return (origEmit as (...a: unknown[]) => void).call(process, w, ...rest);
     }) as typeof process.emitWarning;
-    const require = createRequire(import.meta.url);
-    const { DatabaseSync } = require("node:sqlite") as { DatabaseSync: new (p: string) => SqliteDb };
-    process.emitWarning = origEmit;
+    let DatabaseSync: new (p: string) => SqliteDb;
+    try {
+      ({ DatabaseSync } = createRequire(import.meta.url)("node:sqlite"));
+    } finally {
+      process.emitWarning = origEmit;
+    }
     const path = join(dir, "cache.db");
     instance = new SqliteCache(new DatabaseSync(path), path);
   } catch {

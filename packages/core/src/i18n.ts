@@ -16,6 +16,8 @@ interface LangPack {
   problemSuffixes: string[];
   /** Words to ignore when extracting n-grams in the CLI's naive clustering. */
   stopwords: string[];
+  /** Job-seeker searches in this language: not demand for a product. */
+  jobNoise: RegExp;
   /** Google `gl` country default. */
   country: string;
 }
@@ -39,6 +41,7 @@ const EN: LangPack = {
   questionPrefixes: ["how to", "why is", "how do i", "best way to", "can't"],
   problemSuffixes: ["problem", "not working", "alternative", "too expensive", "tool", "software", "app", "template", "vs"],
   stopwords: "a an the and or but if of to in on for with at by from is are was were be been being it its this that these those i you he she we they my your our their me him her us them not no do does did have has had can could would should will just so very really about as into than then there here what which who when where why how all any some more most other such only own same too also get got like one also even much many".split(" "),
+  jobNoise: /\b(jobs?|hiring|salary|salaries|careers?|vacanc(y|ies)|internships?)\b/i,
   country: "us",
 };
 
@@ -61,6 +64,7 @@ const FR: LangPack = {
   questionPrefixes: ["comment", "pourquoi", "comment faire", "quel logiciel", "quel outil"],
   problemSuffixes: ["problème", "ne marche pas", "alternative", "trop cher", "outil", "logiciel", "application", "modèle", "gratuit"],
   stopwords: "le la les un une des du de d l et ou mais si à a au aux en dans sur pour par avec sans ce cet cette ces c ça ca est sont été être je tu il elle on nous vous ils elles me te se mon ma mes ton ta tes son sa ses notre nos votre vos leur leurs ne pas plus qui que quoi dont où ou y très tout tous toute toutes comme aussi fait faire avoir ai as avons avez ont j n s qu même bien peu".split(" "),
+  jobNoise: /\b(offres?|emplois?|salaires?|recrutement|recrute|stage|alternance|cdi|télétravail|teletravail)\b/i,
   country: "fr",
 };
 
@@ -79,6 +83,7 @@ const DE: LangPack = {
   questionPrefixes: ["wie", "warum", "wie kann ich", "welche software", "welches tool"],
   problemSuffixes: ["problem", "funktioniert nicht", "alternative", "zu teuer", "tool", "software", "app", "vorlage", "kostenlos"],
   stopwords: "der die das ein eine einer eines einem einen und oder aber wenn von zu im in an auf für mit bei aus ist sind war waren sein es dies diese dieser ich du er sie wir ihr mein dein unser euer nicht kein keine ja nein wie was wer wann wo warum auch noch nur schon sehr mehr man sich mich mir dich dir uns".split(" "),
+  jobNoise: /\b(stellen\w*|gehalt|jobbörse|ausbildung|praktikum)\b/i,
   country: "de",
 };
 
@@ -98,6 +103,7 @@ const ES: LangPack = {
   questionPrefixes: ["cómo", "por qué", "cómo hacer", "qué programa", "qué herramienta"],
   problemSuffixes: ["problema", "no funciona", "alternativa", "caro", "herramienta", "programa", "app", "plantilla", "gratis"],
   stopwords: "el la los las un una unos unas y o pero si de del a al en con sin por para es son fue ser estar está este esta estos estas ese esa eso yo tu él ella nosotros vosotros ellos mi mis tu tus su sus nuestro no sí que qué quien cómo como cuando donde muy más también ya solo me te se lo le les nos".split(" "),
+  jobNoise: /\b(empleos?|sueldos?|trabajo|vacantes?|prácticas)\b/i,
   country: "es",
 };
 

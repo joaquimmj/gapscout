@@ -16,16 +16,16 @@ import {
   SOURCE_IDS,
   truncate,
   withScores,
+  VERSION,
   type Report,
 } from "../../core/src/index.js";
 
-const VERSION = "0.1.0";
 
 const lang = z.enum(LANGS as unknown as [string, ...string[]]).describe("Language of queries and output: en, fr, de, es");
 const score = z.object({ value: z.number().int().min(1).max(5), why: z.string() });
 
 function json(data: unknown) {
-  return { content: [{ type: "text" as const, text: JSON.stringify(data, null, 1) }] };
+  return { content: [{ type: "text" as const, text: JSON.stringify(data) }] }; // compact: tool output is paid for in tokens on every call
 }
 function fail(e: unknown) {
   return { isError: true, content: [{ type: "text" as const, text: `gapscout error: ${(e as Error)?.message ?? String(e)}` }] };
@@ -54,13 +54,13 @@ server.registerTool(
       lang,
       sources: z.array(z.enum(SOURCE_IDS as unknown as [string, ...string[]])).optional().describe("Default: all"),
       since_days: z.number().int().positive().optional().describe("Only items newer than N days (default: no limit)"),
-      limit: z.number().int().min(1).max(100).optional().describe("Max items per source (default 25)"),
+      limit: z.number().int().min(1).max(100).optional().describe("Max items per source (default 15)"),
       country: z.string().length(2).optional().describe("ISO country for App Store / SERP, default from lang"),
       se_sites: z.array(z.string()).optional().describe("Stack Exchange sites, e.g. ['money','freelancing','superuser']"),
       subreddits: z.array(z.string()).optional().describe("Restrict Reddit searches to these subreddits (DataForSEO only)"),
       discourse_domains: z.array(z.string()).optional().describe("Discourse forums to search, e.g. ['forum.code.org', 'community.n8n.io']"),
       pain_only: z.boolean().optional().describe("Drop items with no pain signal (default false)"),
-      max_chars: z.number().int().min(100).max(4000).optional().describe("Truncate each item's text (default 500)"),
+      max_chars: z.number().int().min(100).max(4000).optional().describe("Truncate each item's text (default 300); open threads to quote more"),
     },
   },
   async (a) => {
@@ -77,9 +77,9 @@ server.registerTool(
         discourseDomains: a.discourse_domains,
         painOnly: a.pain_only,
       });
-      const max = a.max_chars ?? 500;
+      const max = a.max_chars ?? 300;
       for (const r of out.results)
-        r.items = r.items.map((i) => ({ ...i, text: truncate(i.text, max) }));
+        r.items = r.items.map((i) => ({ ...i, text: truncate(i.text, max), painTerms: i.painTerms?.length ? i.painTerms : undefined }));
       return json(out);
     } catch (e) {
       return fail(e);
@@ -160,8 +160,21 @@ server.registerTool(
     },
   },
   async ({ checks }) => {
-    const results = [];
-    for (const c of checks) results.push({ quote: truncate(c.quote, 120), ...(await verifyQuote(c.url, c.quote)) });
+    // Hosts in parallel, one request at a time per host (polite); results keep the input order.
+    const byHost = new Map<string, number[]>();
+    checks.forEach((c, i) => {
+      const h = new URL(c.url).host;
+      byHost.set(h, [...(byHost.get(h) ?? []), i]);
+    });
+    const results = new Array(checks.length);
+    await Promise.all(
+      [...byHost.values()].map(async (idxs) => {
+        for (const i of idxs) {
+          const c = checks[i]!;
+          results[i] = { quote: truncate(c.quote, 120), ...(await verifyQuote(c.url, c.quote)) };
+        }
+      }),
+    );
     return json(results);
   },
 );
@@ -268,7 +281,7 @@ server.registerTool(
       niche: z.string(),
       lang,
       sources_used: z.array(z.string()),
-      opportunities: z.array(opportunity).min(1),
+      opportunities: z.array(opportunity),
       discarded: z.array(z.object({ title: z.string(), reason: z.string() })).optional(),
       notes: z.array(z.string()).optional().describe("Run-wide caveats: sources skipped, free mode, thin coverage"),
     },

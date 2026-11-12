@@ -1,24 +1,6 @@
 // Opportunity score = frequency × intensity × Google demand × SERP weakness, each 1–5 with a visible reason.
 import type { Score, SerpResult, Suggestion } from "./types.js";
 
-const clamp = (n: number): Score["value"] => Math.max(1, Math.min(5, Math.round(n))) as Score["value"];
-
-export function frequencyScore(mentions: number, distinctSources: number): Score {
-  const base = mentions >= 21 ? 5 : mentions >= 11 ? 4 : mentions >= 6 ? 3 : mentions >= 3 ? 2 : 1;
-  const bonus = distinctSources >= 3 && base < 5 ? 1 : 0;
-  return {
-    value: clamp(base + bonus),
-    why: `${mentions} independent mention${mentions === 1 ? "" : "s"} across ${distinctSources} source${distinctSources === 1 ? "" : "s"}${bonus ? " (+1: seen on 3+ sources)" : ""}`,
-  };
-}
-
-/** A starting point for the LLM, from lexicon hits. The clusterer overrides it after reading. */
-export function intensityHint(painHints: number[], wtpMentions: number): Score {
-  const avg = painHints.length ? painHints.reduce((a, b) => a + b, 0) / painHints.length : 0;
-  const v = 1 + avg * 3 + Math.min(wtpMentions, 2) * 0.5;
-  return { value: clamp(v), why: `avg pain signal ${avg.toFixed(2)}, ${wtpMentions} willingness-to-pay phrase(s)` };
-}
-
 /**
  * Demand from Google. With volumes (DataForSEO): monthly searches summed over relevant keywords.
  * Without: how many relevant autocomplete suggestions exist — a proxy, labelled as such.
@@ -47,7 +29,7 @@ const UGC = [
   /(^|\.)commentcamarche\.net$/, /(^|\.)doctissimo\.fr$/, /(^|\.)gutefrage\.net$/, /(^|\.)forocoches\.com$/,
   // Public complaint / review pages: users describing the problem, not a solution.
   /(^|\.)plus\.transformation\.gouv\.fr$/, /(^|\.)trustpilot\.com$/, /(^|\.)avis-verifies\.com$/,
-  /(^|\.)indiehackers\.com$/, /(^|\.)gutefrage\.net$/, /(^|\.)finanzfrage\.net$/,
+  /(^|\.)indiehackers\.com$/, /(^|\.)finanzfrage\.net$/,
 ];
 /** Thin results: app-store listings and template galleries rank, but no dedicated page answers the query. */
 const THIN = [
@@ -87,12 +69,13 @@ export function serpWeakness(query: string, results: SerpResult[]): { score: Sco
       const w = i < 3 ? 2 : 1;
       points += w;
       signals.push(`#${r.position} is user-generated content (${h})${i < 3 ? " in the top 3" : ""}`);
+    } else if (THIN.some((re) => re.test(h))) {
+      // Before AUTHORITY: apps.apple.com and play.google.com would otherwise match apple.com / google.com.
+      points += 0.5;
+      signals.push(`#${r.position} is an app-store listing or template gallery (${h}), not a dedicated page`);
     } else if (AUTHORITY.some((re) => re.test(h))) {
       points -= 1;
       signals.push(`#${r.position} is a high-authority site (${h})`);
-    } else if (THIN.some((re) => re.test(h))) {
-      points += 0.5;
-      signals.push(`#${r.position} is an app-store listing or template gallery (${h}), not a dedicated page`);
     } else if (LISTICLE.test(r.title)) {
       points += 0.5;
       signals.push(`#${r.position} is a comparison/listicle page, not a dedicated solution ("${r.title.slice(0, 50)}")`);

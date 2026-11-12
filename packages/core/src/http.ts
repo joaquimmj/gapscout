@@ -1,6 +1,9 @@
 import { getCache } from "./cache.js";
 
-export const USER_AGENT = "gapscout/0.1 (+https://github.com/joaquimmj/gapscout)";
+// Injected from package.json by scripts/build.mjs.
+declare const __GAPSCOUT_VERSION__: string;
+export const VERSION = __GAPSCOUT_VERSION__;
+export const USER_AGENT = `gapscout/${VERSION} (+https://github.com/joaquimmj/gapscout)`;
 
 export class HttpError extends Error {
   constructor(
