@@ -134,7 +134,7 @@ gapscout **never scrapes around a restriction**. Each adapter uses what the sour
 | GitHub issues | [REST search API](https://docs.github.com/en/rest/search) | token optional |
 | App Store | iTunes Search API + public customer-review feed | 1–3★ reviews only |
 | Bluesky | [public AppView API](https://docs.bsky.app/) (`searchPosts`), no key | the API is what Bluesky asks bots to use |
-| Discourse forums | each forum's own `/search.json` | only forums you name; robots.txt honoured |
+| Discourse forums | threads found by web search, read through the forum's `/t/<id>.json` | most Discourse forums disallow `/search` for crawlers in robots.txt, and gapscout honours that |
 | Reddit | Google results (`site:reddit.com …`) via DataForSEO | never the Reddit API, no mirrors. Claude's own web tools can't reach reddit.com, so without DataForSEO Reddit is skipped |
 | Forums & communities | web search + pages as served (forums, Quora, public-service feedback, freelance job boards) | |
 | Trustpilot / G2 / Capterra | web search snippets, pages as served | no pagination, no bypass |

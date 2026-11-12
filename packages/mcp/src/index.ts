@@ -59,7 +59,7 @@ server.registerTool(
       country: z.string().length(2).optional().describe("ISO country for App Store / SERP, default from lang"),
       se_sites: z.array(z.string()).optional().describe("Stack Exchange sites, e.g. ['money','freelancing','superuser']"),
       subreddits: z.array(z.string()).optional().describe("Restrict Reddit searches to these subreddits (DataForSEO only)"),
-      discourse_domains: z.array(z.string()).optional().describe("Discourse forums to search, e.g. ['forum.code.org', 'community.n8n.io']"),
+      discourse_domains: z.array(z.string()).optional().describe("Discourse forums to search. Most forbid search in robots.txt and are skipped: prefer web search + get_thread dc:<domain>:<topic id>"),
       pain_only: z.boolean().optional().describe("Drop items with no pain signal (default false)"),
       max_chars: z.number().int().min(100).max(4000).optional().describe("Truncate each item's text (default 300); open threads to quote more"),
     },

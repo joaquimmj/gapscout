@@ -23228,7 +23228,7 @@ server.registerTool(
       country: external_exports.string().length(2).optional().describe("ISO country for App Store / SERP, default from lang"),
       se_sites: external_exports.array(external_exports.string()).optional().describe("Stack Exchange sites, e.g. ['money','freelancing','superuser']"),
       subreddits: external_exports.array(external_exports.string()).optional().describe("Restrict Reddit searches to these subreddits (DataForSEO only)"),
-      discourse_domains: external_exports.array(external_exports.string()).optional().describe("Discourse forums to search, e.g. ['forum.code.org', 'community.n8n.io']"),
+      discourse_domains: external_exports.array(external_exports.string()).optional().describe("Discourse forums to search. Most forbid search in robots.txt and are skipped: prefer web search + get_thread dc:<domain>:<topic id>"),
       pain_only: external_exports.boolean().optional().describe("Drop items with no pain signal (default false)"),
       max_chars: external_exports.number().int().min(100).max(4e3).optional().describe("Truncate each item's text (default 300); open threads to quote more")
     }

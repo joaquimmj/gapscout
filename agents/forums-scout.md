@@ -20,7 +20,7 @@ You collect evidence of real problems from online communities in one language. Y
 
      For example: `"as a teacher" grading`, `"my clients" invoice late`, `"my classroom" gradebook`. Run ~10 such queries, and skip news, promo, jokes and AI-tip spam. **Also search each incumbent product name alone** (`sevDesk`, `ClassDojo`): complaints about the tools people already use are often the richest vein, especially outside English, where first-person phrases return little.
    - If a whole forum domain returns 403 to `fetch_page`, don't retry it: keep its search snippets as `snippet_only` and move on.
-   - If the plan lists forum `domains`, also call it with `sources: ["discourse"]` and `discourse_domains`. Non-Discourse or robots-blocked domains are skipped and reported in notes.
+   - Discourse forums (most product communities: `community.<product>.com`, `forum.<product>.com`): almost all of them forbid crawlers from using their search (`robots.txt`), so don't count on `sources: ["discourse"]`. Find threads with **WebSearch**, passing the forum in `allowed_domains`. Then read each thread verbatim with `get_thread` and the id `dc:<domain>:<topic id>`: a thread at `https://forum.x.com/t/some-title/1234/5` is `dc:forum.x.com:1234:5`.
    - Read promising items with `get_thread`. Quotes from these APIs are verbatim.
 3. **Other forums and communities, with WebSearch.**
    - Search each planned query in the target language, adding community words (`forum`, `avis`, `témoignage`, `retour d'expérience`, `Erfahrungen`, `foro`, `experiences`).

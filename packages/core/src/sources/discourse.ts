@@ -1,6 +1,10 @@
 // Discourse forums through their public search API (`/search.json`), the same endpoint the forum's
 // own search box uses. Thousands of communities run Discourse (product forums, teacher and maker
 // communities…). Callers pass the forum domains to search; we honour robots.txt for each.
+//
+// Probed 12 Nov 2026 on 40 forums: Discourse's default robots.txt disallows /search, so search is
+// refused on nearly all of them (1 of 40 allowed it). Reading a topic (/t/<id>.json) is allowed.
+// In practice: discover threads through web search, read them with getDiscourseThread.
 import { fetchJson, htmlToText } from "../http.js";
 import { assertPublicUrl, robotsAllows } from "../page.js";
 import type { Complaint, SearchOptions, SourceResult, Thread } from "../types.js";
